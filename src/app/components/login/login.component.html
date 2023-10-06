@@ -1,0 +1,18 @@
+<section class="login-section">
+  <form class="login-form" [formGroup]="form" (ngSubmit)="submit()">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Usuario</mat-label>
+      <input matInput placeholder="Introduce tu usuario" name="username" formControlName="username">
+      <mat-error *ngIf="submitted && form.get('username')?.errors?.['required']">Campo obligatorio</mat-error>
+      <mat-error *ngIf="submitted && form.get('username')?.invalid">Usuario o contraseña incorrecta</mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Contraseña</mat-label>
+      <input matInput placeholder="Introduce tu contraseña" name="password" type="password"
+             formControlName="password">
+      <mat-error *ngIf="submitted && form.get('password')?.errors?.['required']">Campo obligatorio</mat-error>
+      <mat-error *ngIf="submitted && form.get('password')?.invalid">Usuario o contraseña incorrecta</mat-error>
+    </mat-form-field>
+    <button mat-raised-button class="submit-button" color="primary" type="submit">Entrar</button>
+  </form>
+</section>

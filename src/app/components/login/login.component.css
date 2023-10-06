@@ -1,0 +1,16 @@
+.login-section{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 240px;
+}
+
+.login-form{
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.submit-button{
+  height: 50px;
+}
