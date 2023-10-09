@@ -11,9 +11,11 @@ import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {FormsModule} from "@angular/forms";
 import {MatIconModule} from "@angular/material/icon";
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {ReactiveFormsModule} from '@angular/forms';
-import { HomeComponent } from './components/home/home.component';
+import {HomeComponent} from './components/home/home.component';
+import {AuthInterceptor} from "./interceptors/auth.interceptor";
+import {MatMenuModule} from "@angular/material/menu";
 
 @NgModule({
   declarations: [
@@ -32,9 +34,10 @@ import { HomeComponent } from './components/home/home.component';
     FormsModule,
     MatIconModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatMenuModule
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule {

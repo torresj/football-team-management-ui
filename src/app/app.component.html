@@ -1,13 +1,38 @@
 <section class="layout">
   <mat-toolbar color="primary">
-    <button mat-icon-button>
+    <button mat-icon-button [matMenuTriggerFor]="mainMenu" [disabled]="(member$ | async) === null">
       <mat-icon>menu</mat-icon>
     </button>
+    <mat-menu #mainMenu="matMenu">
+      <button mat-menu-item>
+        <mat-icon>sports_soccer</mat-icon>
+        <span>Partidos</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>groups</mat-icon>
+        <span>Miembros</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>account_balance</mat-icon>
+        <span>Balance</span>
+      </button>
+    </mat-menu>
     <span>Peña Km/h</span>
     <span class="example-spacer"></span>
-    <button mat-icon-button>
+    <h6 *ngIf="(member$ | async) as member" class="member-name">{{member.name}}</h6>
+    <button mat-icon-button [matMenuTriggerFor]="logMenu" [disabled]="(member$ | async) === null">
       <mat-icon>person</mat-icon>
     </button>
+    <mat-menu #logMenu="matMenu">
+      <button mat-menu-item>
+        <mat-icon>password</mat-icon>
+        <span>Cambiar contraseña</span>
+      </button>
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        <span>Salir</span>
+      </button>
+    </mat-menu>
   </mat-toolbar>
   <router-outlet></router-outlet>
 </section>

@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import {AuthService} from "../../services/auth.service";
+import {ReplaySubject} from "rxjs";
+import Member from "../../entities/Member";
 
 @Component({
   selector: 'app-home',
@@ -7,4 +10,5 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
+  constructor(private authService: AuthService) {}
 }

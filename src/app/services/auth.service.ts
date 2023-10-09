@@ -2,8 +2,10 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {apiConstants} from "../constants/api.constants";
 import * as moment from 'moment';
-import {shareReplay, tap} from "rxjs";
+import {BehaviorSubject, concatWith, shareReplay, tap} from "rxjs";
 import Jwt from "../entities/Jwt";
+import {MemberService} from "./member.service";
+import Member from "../entities/Member";
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +13,12 @@ import Jwt from "../entities/Jwt";
 export class AuthService {
 
   private jwt_key = "JWT_KEY";
-  private authenticated = false;
+  member$ = new BehaviorSubject<Member | null>(null);
 
-  constructor(private http: HttpClient) {
-    console.log()
-    this.authenticated = localStorage.getItem(this.jwt_key) !== null && localStorage.getItem(this.jwt_key) !== '';
+  constructor(private http: HttpClient, private memberService: MemberService) {
+    if (localStorage.getItem(this.jwt_key) !== null && localStorage.getItem(this.jwt_key) !== '') {
+      this.memberService.getMe$().subscribe({next: value => this.member$.next(value)})
+    }
   }
 
   login$(username: string, password: string) {
@@ -24,18 +27,21 @@ export class AuthService {
       username,
       password,
       nonce
-    }).pipe(shareReplay(1), tap(jwt => {
-      localStorage.setItem(this.jwt_key, jwt.jwt);
-      this.authenticated = true;
-    }));
+    }).pipe(
+      shareReplay(1),
+      tap(jwt => {
+        localStorage.setItem(this.jwt_key, jwt.jwt);
+      }),
+      concatWith(this.memberService.getMe$().pipe(tap(member => this.member$.next(member))))
+    );
   }
 
   isAuthenticated() {
-    return this.authenticated;
+    return localStorage.getItem(this.jwt_key) !== null && localStorage.getItem(this.jwt_key) !== '';
   }
 
   logout() {
     localStorage.setItem(this.jwt_key, '');
-    this.authenticated = false;
+    this.member$.next(null);
   }
 }
