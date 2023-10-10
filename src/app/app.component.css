@@ -7,3 +7,30 @@
   font-size: 18px;
   margin-right: 10px;
 }
+
+.team-name{
+  text-decoration: none;
+  color: white;
+  font-weight: normal;
+}
+
+.layout{
+  flex: 1;
+}
+
+.footer{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 20px 0;
+  color: grey;
+}
+
+.footer a{
+  text-decoration: none;
+  color: grey;
+}
+
+.footer span{
+  margin: 0 4px;
+}

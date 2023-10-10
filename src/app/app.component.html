@@ -17,7 +17,7 @@
         <span>Balance</span>
       </button>
     </mat-menu>
-    <span>Peña Km/h</span>
+    <a class="team-name" [routerLink]="['/']">Peña Km/h</a>
     <span class="example-spacer"></span>
     <h6 *ngIf="(member$ | async) as member" class="member-name">{{member.name}}</h6>
     <button mat-icon-button [matMenuTriggerFor]="logMenu" [disabled]="(member$ | async) === null">
@@ -34,6 +34,10 @@
       </button>
     </mat-menu>
   </mat-toolbar>
-  <router-outlet></router-outlet>
+  <router-outlet class="layout-content"></router-outlet>
 </section>
+<footer class="footer">
+    <a href="mailto:jtbenavente@gmail.com">Jaime Torres</a>
+    <span>&copy;</span> 2023
+</footer>
 

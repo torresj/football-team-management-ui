@@ -6,6 +6,7 @@ import {BehaviorSubject, concatWith, shareReplay, tap} from "rxjs";
 import Jwt from "../entities/Jwt";
 import {MemberService} from "./member.service";
 import Member from "../entities/Member";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -15,9 +16,14 @@ export class AuthService {
   private jwt_key = "JWT_KEY";
   member$ = new BehaviorSubject<Member | null>(null);
 
-  constructor(private http: HttpClient, private memberService: MemberService) {
+  constructor(private http: HttpClient, private memberService: MemberService, private router: Router) {
     if (localStorage.getItem(this.jwt_key) !== null && localStorage.getItem(this.jwt_key) !== '') {
-      this.memberService.getMe$().subscribe({next: value => this.member$.next(value)})
+      this.memberService.getMe$().subscribe({
+        next: value => this.member$.next(value), error: err => {
+          this.logout();
+          this.router.navigateByUrl('/login');
+        }
+      })
     }
   }
 
@@ -31,6 +37,7 @@ export class AuthService {
       shareReplay(1),
       tap(jwt => {
         localStorage.setItem(this.jwt_key, jwt.jwt);
+        console.log(jwt.jwt)
       }),
       concatWith(this.memberService.getMe$().pipe(tap(member => this.member$.next(member))))
     );

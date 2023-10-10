@@ -16,12 +16,17 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {HomeComponent} from './components/home/home.component';
 import {AuthInterceptor} from "./interceptors/auth.interceptor";
 import {MatMenuModule} from "@angular/material/menu";
+import { ConfirmAssistanceComponent } from './components/dialogs/confirm-assistance/confirm-assistance.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import { ConfirmNoAssistanceComponent } from './components/dialogs/confirm-no-assistance/confirm-no-assistance.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    ConfirmAssistanceComponent,
+    ConfirmNoAssistanceComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +40,8 @@ import {MatMenuModule} from "@angular/material/menu";
     MatIconModule,
     HttpClientModule,
     ReactiveFormsModule,
-    MatMenuModule
+    MatMenuModule,
+    MatDialogModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
