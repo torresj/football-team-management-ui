@@ -4,7 +4,7 @@
       <mat-icon>menu</mat-icon>
     </button>
     <mat-menu #mainMenu="matMenu">
-      <button mat-menu-item>
+      <button mat-menu-item [matMenuTriggerFor]="matchesMenu">
         <mat-icon>sports_soccer</mat-icon>
         <span>Partidos</span>
       </button>
@@ -15,6 +15,14 @@
       <button mat-menu-item>
         <mat-icon>account_balance</mat-icon>
         <span>Balance</span>
+      </button>
+    </mat-menu>
+    <mat-menu #matchesMenu="matMenu">
+      <button mat-menu-item [routerLink]="'/matches/next-match'">
+        Siguiente partido
+      </button>
+      <button mat-menu-item>
+        Partidos anteriores
       </button>
     </mat-menu>
     <a class="team-name" [routerLink]="['/']">Peña Km/h</a>

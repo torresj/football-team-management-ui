@@ -19,6 +19,8 @@ import {MatMenuModule} from "@angular/material/menu";
 import { ConfirmAssistanceComponent } from './components/dialogs/confirm-assistance/confirm-assistance.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import { ConfirmNoAssistanceComponent } from './components/dialogs/confirm-no-assistance/confirm-no-assistance.component';
+import { NextMatchComponent } from './components/next-match/next-match.component';
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   declarations: [
@@ -26,23 +28,25 @@ import { ConfirmNoAssistanceComponent } from './components/dialogs/confirm-no-as
     LoginComponent,
     HomeComponent,
     ConfirmAssistanceComponent,
-    ConfirmNoAssistanceComponent
+    ConfirmNoAssistanceComponent,
+    NextMatchComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    RouterOutlet,
-    AppRoutingModule,
-    MatToolbarModule,
-    MatInputModule,
-    MatButtonModule,
-    FormsModule,
-    MatIconModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    MatMenuModule,
-    MatDialogModule
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        RouterOutlet,
+        AppRoutingModule,
+        MatToolbarModule,
+        MatInputModule,
+        MatButtonModule,
+        FormsModule,
+        MatIconModule,
+        HttpClientModule,
+        ReactiveFormsModule,
+        MatMenuModule,
+        MatDialogModule,
+        MatProgressSpinnerModule
+    ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })

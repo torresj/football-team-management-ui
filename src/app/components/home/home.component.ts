@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit {
   member$: BehaviorSubject<Member | null>;
   isMemberConfirmed$ = new BehaviorSubject(false);
   isMemberAssistNextMatch$ = new BehaviorSubject(false);
+  isLoading$ = new BehaviorSubject(true);
 
   constructor(private authService: AuthService, private matchService: MatchService, private dialog: MatDialog) {
     this.member$ = this.authService.member$;
@@ -61,13 +62,18 @@ export class HomeComponent implements OnInit {
   }
 
   private getNextMatch() {
+    this.isLoading$.next(true);
     this.matchService.getNextMatch$().subscribe({
       next: match => {
         this.nextMatch$.next(match);
         this.isMemberConfirmed$.next(this.isMemberConfirmed());
         this.isMemberAssistNextMatch$.next(this.isMemberAssistNextMatch());
+        this.isLoading$.next(false);
       },
-      error: err => this.nextMatch$.next(null)
+      error: err => {
+        this.nextMatch$.next(null);
+        this.isLoading$.next(false);
+      }
     })
   }
 }

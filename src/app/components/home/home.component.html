@@ -1,5 +1,8 @@
 <section class="home-section">
-  <section>
+  <section *ngIf="(isLoading$ | async)">
+    <mat-spinner></mat-spinner>
+  </section>
+  <section *ngIf="!(isLoading$ | async)">
     <article *ngIf="(member$ | async) as member" class="info-section">
       <h1>Bienvenido {{member.name}}</h1>
       <article *ngIf="(nextMatch$ | async)">
@@ -21,9 +24,9 @@
       </article>
     </article>
     <article class="next-match-button-section">
-      <button mat-fab color="accent" aria-label="Example icon button with a delete icon"
-              [disabled]="(nextMatch$ | async) === null || (nextMatch$ | async) === undefined">
-        <mat-icon>sports_soccer</mat-icon>
+      <button mat-stroked-button color="accent"
+              [disabled]="(nextMatch$ | async) === null || (nextMatch$ | async) === undefined"
+              [routerLink]="'/matches/next-match'">Ir al partido
       </button>
     </article>
   </section>
