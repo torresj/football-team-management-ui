@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
+import {BehaviorSubject} from "rxjs";
 
 @Component({
   selector: 'app-login',
@@ -16,6 +17,8 @@ export class LoginComponent implements OnInit {
   });
 
   submitted = false;
+
+  isLoading$ = new BehaviorSubject(false);
 
   constructor(
     private authService: AuthService,
@@ -37,7 +40,7 @@ export class LoginComponent implements OnInit {
 
   submit() {
     this.submitted = true;
-
+    this.isLoading$.next(true);
     if (this.form.invalid) {
       return;
     }
@@ -46,11 +49,13 @@ export class LoginComponent implements OnInit {
       next: value => {
         this.submitted = false;
         this.router.navigateByUrl('/');
+        this.isLoading$.next(false);
       },
       error: err => {
         console.log(err)
         this.form.get('username')?.setErrors({'incorrect': true});
         this.form.get('password')?.setErrors({'incorrect': true});
+        this.isLoading$.next(false);
       }
     });
   }

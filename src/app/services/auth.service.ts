@@ -7,6 +7,7 @@ import Jwt from "../entities/Jwt";
 import {MemberService} from "./member.service";
 import Member from "../entities/Member";
 import {Router} from "@angular/router";
+import {Role} from "../entities/Role";
 
 @Injectable({
   providedIn: 'root'
@@ -50,5 +51,9 @@ export class AuthService {
   logout() {
     localStorage.setItem(this.jwt_key, '');
     this.member$.next(null);
+  }
+
+  isAdmin() {
+    return this.member$.value?.role == Role.ADMIN;
   }
 }

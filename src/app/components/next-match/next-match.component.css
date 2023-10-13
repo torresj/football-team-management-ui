@@ -1,0 +1,27 @@
+.next-match-content{
+  display: flex;
+  flex-direction: column;
+}
+
+.next-match-cards{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.next-match-spinner{
+  margin-top: 100px;
+}
+
+.next-match-title{
+  margin: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-size: 1.7em;
+}
+
+.divider{
+  padding: 30px 20px;
+}

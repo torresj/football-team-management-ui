@@ -13,6 +13,9 @@
       <mat-error *ngIf="submitted && form.get('password')?.errors?.['required']">Campo obligatorio</mat-error>
       <mat-error *ngIf="submitted && form.get('password')?.invalid">Usuario o contraseña incorrecta</mat-error>
     </mat-form-field>
-    <button mat-raised-button class="submit-button" color="primary" type="submit">Entrar</button>
+    <button mat-raised-button class="submit-button" color="primary" type="submit">
+      <mat-spinner color="warn" *ngIf="(isLoading$ | async)" class="login-spinner"></mat-spinner>
+      <span *ngIf="!(isLoading$ | async)">Entrar</span>
+    </button>
   </form>
 </section>

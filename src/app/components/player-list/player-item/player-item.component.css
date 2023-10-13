@@ -1,0 +1,22 @@
+
+.player-avatar{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 35px;
+  width: 35px;
+  border: 2px solid grey;
+  border-radius: 50%;
+  font-weight: bold;
+  color: grey;
+  font-size: 14px;
+  margin-right: 25px;
+}
+
+.player-section{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}

@@ -19,4 +19,22 @@ export class MatchService {
   addPlayerToMatch(matchID: number, status: PlayerMatchStatus) {
     return this.http.post(apiConstants.apiBaseUrl + `/v1/matches/${matchID}/players`, {"status": status});
   }
+
+  removePlayerFromTeamA(matchId: number, playerId: number) {
+    return this.http.delete(apiConstants.apiBaseUrl + `/v1/matches/${matchId}/players/${playerId}/teama`)
+  }
+
+  removePlayerFromTeamB(matchId: number, playerId: number) {
+    return this.http.delete(apiConstants.apiBaseUrl + `/v1/matches/${matchId}/players/${playerId}/teamb`)
+  }
+
+  removeGuestFromTeamA(matchId: number, guest: string) {
+    return this.http.delete(apiConstants.apiBaseUrl + `/v1/matches/${matchId}/guests/teama`,
+      {body: {"guest": guest}})
+  }
+
+  removeGuestFromTeamB(matchId: number, guest: string) {
+    return this.http.delete(apiConstants.apiBaseUrl + `/v1/matches/${matchId}/guests/teamb`,
+      {body: {"guest": guest}})
+  }
 }
