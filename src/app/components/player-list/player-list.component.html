@@ -1,0 +1,18 @@
+<section class="players-card">
+  <mat-card>
+    <section class="player-list-title">
+      <span>{{title}}</span>
+    </section>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+      <mat-list *ngFor="let player of players">
+        <mat-list-item role="listitem">
+          <app-player-item [player]="player"/>
+        </mat-list-item>
+      </mat-list>
+      <div class="no-players" *ngIf="players.length == 0">
+        <span>No hay jugadores aún</span>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</section>

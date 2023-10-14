@@ -1,0 +1,44 @@
+<section class="players-card">
+  <mat-card>
+    <section class="player-list-title">
+      <span>{{title}}</span>
+    </section>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+      <mat-list>
+        <div mat-subheader>Jugadores</div>
+        <mat-list-item *ngFor="let player of players">
+          <div matListItemTitle class="player-item-row">
+            <app-team-item [player]="player"/>
+            <button *ngIf="isAdmin" mat-icon-button color="warn" class="delete-button" (click)="removePlayer(player)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </mat-list-item>
+        <div class="no-players" *ngIf="players.length == 0">
+          <span>No hay jugadores aún</span>
+        </div>
+        <section *ngIf="guests.length>0">
+          <div class="divider">
+            <mat-divider></mat-divider>
+          </div>
+          <div mat-subheader>Invitados</div>
+          <mat-list-item *ngFor="let guest of guests">
+            <mat-icon matListItemIcon>directions_run</mat-icon>
+            <div matListItemTitle class="player-item-row">
+              {{guest}}
+              <button *ngIf="isAdmin" mat-icon-button color="warn" class="delete-button" (click)="removeGuest(guest)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </mat-list-item>
+        </section>
+      </mat-list>
+    </mat-card-content>
+    <section *ngIf="isAdmin" class="card-action-buttons">
+      <button mat-fab color="primary" (click)="addPlayer()">
+        <mat-icon>person_add</mat-icon>
+      </button>
+    </section>
+  </mat-card>
+</section>

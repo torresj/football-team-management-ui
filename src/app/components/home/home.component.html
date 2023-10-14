@@ -29,5 +29,12 @@
               [routerLink]="'/matches/next-match'">Ir al partido
       </button>
     </article>
+    <article class="next-match-button-section">
+      <button
+        *ngIf="(member$ | async)?.role == Role.ADMIN && !(nextMatch$ | async)"
+        mat-stroked-button color="primary"
+        (click)="createMatch()">Crear partido
+      </button>
+    </article>
   </section>
 </section>

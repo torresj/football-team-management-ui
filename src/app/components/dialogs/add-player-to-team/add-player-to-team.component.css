@@ -1,0 +1,18 @@
+.player-form-fields{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.player-form-field{
+  margin: 10px;
+}
+
+.dialog-action-buttons{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-right: 10px;
+}

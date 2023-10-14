@@ -28,6 +28,12 @@ import {MatListModule} from "@angular/material/list";
 import { PlayerItemComponent } from './components/player-list/player-item/player-item.component';
 import { TeamListComponent } from './components/team-list/team-list.component';
 import { TeamItemComponent } from './components/team-list/team-item/team-item.component';
+import { AddPlayerToTeamComponent } from './components/dialogs/add-player-to-team/add-player-to-team.component';
+import {MatSelectModule} from "@angular/material/select";
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import { CreateMatchComponent } from './components/dialogs/create-match/create-match.component';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
 
 @NgModule({
   declarations: [
@@ -40,7 +46,9 @@ import { TeamItemComponent } from './components/team-list/team-item/team-item.co
     PlayerListComponent,
     PlayerItemComponent,
     TeamListComponent,
-    TeamItemComponent
+    TeamItemComponent,
+    AddPlayerToTeamComponent,
+    CreateMatchComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +67,12 @@ import { TeamItemComponent } from './components/team-list/team-item/team-item.co
     MatProgressSpinnerModule,
     MatCardModule,
     MatDividerModule,
-    MatListModule
+    MatListModule,
+    MatSelectModule,
+    MatSlideToggleModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatNativeDateModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]

@@ -1,0 +1,46 @@
+.players-card{
+  min-width: 300px;
+  padding: 20px;
+}
+
+.player-list-title{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 0;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.no-players{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.divider{
+  margin: 20px 0;
+}
+
+.card-action-buttons{
+  margin-bottom: 20px;
+  margin-right: 20px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.player-item-row{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.delete-button{
+  margin-left: 10px;
+}
+

@@ -1,0 +1,15 @@
+<section class="create-match-section">
+  <h1 mat-dialog-title>Crear partido</h1>
+  <div mat-dialog-content>
+    Selecciona el dia del siguiente partido
+  </div>
+  <div class="calendar-section">
+    <mat-card class="demo-inline-calendar-card">
+      <mat-calendar [(selected)]="dateSelected"></mat-calendar>
+    </mat-card>
+  </div>
+  <div class="dialog-action-buttons" mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button mat-button (click)="createMatch()">Crear</button>
+  </div>
+</section>

@@ -1,0 +1,21 @@
+.players-card{
+  min-width: 300px;
+  padding: 20px;
+}
+
+.player-list-title{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 0;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.no-players{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 20px 0;
+}

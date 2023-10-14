@@ -3,8 +3,8 @@
     <mat-spinner></mat-spinner>
   </article>
   <article class="next-match-info" *ngIf="!(isLoading$ | async)">
-    <article *ngIf="!(nextMatch$ | async)">
-      test
+    <article *ngIf="!(nextMatch$ | async)" class="no-next-match-section">
+      <p>El siguiente partido aun no ha sido creado</p>
     </article>
     <article class="next-match-content" *ngIf="(nextMatch$ | async) as match">
       <h1 class="next-match-title">Partido del lunes {{match.matchDay | date:'dd/MM/yy'}}</h1>
@@ -19,10 +19,12 @@
       <article class="next-match-cards">
         <app-team-list [players]="match.teamAPlayers" [guests]="match.teamAGuests" title="Equipo Blanco"
                        (removePlayerEvent)="removePlayerFromTeamA($event)"
-                       (removeGuestEvent)="removeGuestFromTeamA($event)"/>
+                       (removeGuestEvent)="removeGuestFromTeamA($event)"
+                       (addPlayerEvent)="addPlayerToTeamA()"/>
         <app-team-list [players]="match.teamBPlayers" [guests]="match.teamBGuests" title="Equipo Rojo"
                        (removePlayerEvent)="removePlayerFromTeamB($event)"
-                       (removeGuestEvent)="removeGuestFromTeamB($event)"/>
+                       (removeGuestEvent)="removeGuestFromTeamB($event)"
+                       (addPlayerEvent)="addPlayerToTeamB()"/>
       </article>
     </article>
   </article>

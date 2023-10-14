@@ -2,8 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {BehaviorSubject} from "rxjs";
 import Match from "../../entities/Match";
 import {MatchService} from "../../services/match.service";
-import {AuthService} from "../../services/auth.service";
 import Player from "../../entities/Player";
+import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import AddPlayerData from "../../entities/AddPlayerData";
+import {AddPlayerToTeamComponent} from "../dialogs/add-player-to-team/add-player-to-team.component";
+import {Team} from "../../entities/Team";
 
 @Component({
   selector: 'app-next-match',
@@ -15,14 +18,14 @@ export class NextMatchComponent implements OnInit {
   isLoading$ = new BehaviorSubject(true);
   nextMatch$ = new BehaviorSubject<Match | null>(null);
 
-  constructor(private matchService: MatchService) {
+  constructor(private matchService: MatchService, private dialog: MatDialog) {
   }
 
   ngOnInit(): void {
     this.getNextMatch(true);
   }
 
-  private getNextMatch( loading: boolean) {
+  private getNextMatch(loading: boolean) {
     if (loading) this.isLoading$.next(true);
     this.matchService.getNextMatch$().subscribe({
       next: match => {
@@ -34,6 +37,42 @@ export class NextMatchComponent implements OnInit {
         this.isLoading$.next(false);
       }
     })
+  }
+
+  addPlayerToTeamA() {
+    const dialogConfig = new MatDialogConfig<AddPlayerData>();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      matchId: this.nextMatch$.value!.id,
+      availablePlayers: this.getAvailablePlayers(),
+      team: Team.A
+    };
+
+
+    this.dialog.open(AddPlayerToTeamComponent, dialogConfig).afterClosed()
+      .subscribe({
+        next: () => this.getNextMatch(false)
+      });
+  }
+
+  addPlayerToTeamB() {
+    const dialogConfig = new MatDialogConfig<AddPlayerData>();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      matchId: this.nextMatch$.value!.id,
+      availablePlayers: this.getAvailablePlayers(),
+      team: Team.B
+    };
+
+
+    this.dialog.open(AddPlayerToTeamComponent, dialogConfig).afterClosed()
+      .subscribe({
+        next: () => this.getNextMatch(false)
+      });
   }
 
   removePlayerFromTeamA(player: Player) {
@@ -66,5 +105,22 @@ export class NextMatchComponent implements OnInit {
           next: () => this.getNextMatch(false)
         }
       );
+  }
+
+  private getAvailablePlayers() {
+    const match = this.nextMatch$.value!;
+    let availablePlayers: Player[] = [];
+    match.confirmedPlayers.forEach(
+      player => availablePlayers.push(player)
+    );
+    return availablePlayers.filter(player => !this.playerIsInAnyTeam(player));
+  }
+
+  private playerIsInAnyTeam(player: Player) {
+    const match = this.nextMatch$.value!;
+    return match.teamAPlayers
+      .map(player => player.id)
+      .concat(match.teamBPlayers.map(player => player.id))
+      .includes(player.id);
   }
 }

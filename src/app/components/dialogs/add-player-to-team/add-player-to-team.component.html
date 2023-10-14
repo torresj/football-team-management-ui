@@ -1,0 +1,32 @@
+<section class="add-player-to-team-section">
+  <h1 mat-dialog-title>Añadir jugador o invitado al equipo</h1>
+  <div mat-dialog-content>
+    Selecciona el jugador que quieres añadir al equipo o introduce el nombre de un invitado
+  </div>
+  <div class="player-form-fields">
+    <div>
+      <mat-form-field class="player-form-field">
+        <mat-label>Jugadores</mat-label>
+        <mat-select [(value)]="playerSelected" [disabled]="(guestActive | async)">
+          <mat-option></mat-option>
+          <mat-option *ngFor="let player of availablePlayers" [value]="player.id">
+            {{player.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <mat-form-field class="player-form-field">
+      <mat-label>Invitado</mat-label>
+      <input matInput [disabled]="!(guestActive | async)" type="text" [(ngModel)]="guest"/>
+    </mat-form-field>
+    <mat-slide-toggle class="player-form-field" (change)="toggleChange()">
+      Invitado
+    </mat-slide-toggle>
+  </div>
+  <div class="dialog-action-buttons" mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button mat-button
+            [disabled]="guest=='' && playerSelected == undefined"
+            (click)="addPlayer()">Añadir</button>
+  </div>
+</section>

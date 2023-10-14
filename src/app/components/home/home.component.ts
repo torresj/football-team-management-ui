@@ -8,6 +8,8 @@ import Player from "../../entities/Player";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {ConfirmAssistanceComponent} from "../dialogs/confirm-assistance/confirm-assistance.component";
 import {ConfirmNoAssistanceComponent} from "../dialogs/confirm-no-assistance/confirm-no-assistance.component";
+import {Role} from "../../entities/Role";
+import {CreateMatchComponent} from "../dialogs/create-match/create-match.component";
 
 @Component({
   selector: 'app-home',
@@ -51,6 +53,18 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  createMatch(){
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    this.dialog.open(CreateMatchComponent, dialogConfig).afterClosed()
+      .subscribe({
+        next: () => this.getNextMatch()
+      });
+  }
+
   private isMemberConfirmed() {
     const id = this.member$.value!.id;
     return !this.nextMatch$.value?.unConfirmedPlayers.map(player => player.id).includes(id) ?? false;
@@ -76,4 +90,6 @@ export class HomeComponent implements OnInit {
       }
     })
   }
+
+  protected readonly Role = Role;
 }
