@@ -32,3 +32,11 @@
   flex-direction: row;
   justify-content: center;
 }
+
+.today-match{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  color: darkred;
+  font-size: 1.2em;
+}

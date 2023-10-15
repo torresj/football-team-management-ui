@@ -12,9 +12,13 @@
             *ngIf="!(isMemberConfirmed$ | async)"> Aun no has confirmado tu asitencia: </span>
           <span
             *ngIf="(isMemberConfirmed$ | async)"> Ya has confirmado que <strong>{{(isMemberAssistNextMatch$ | async) ? 'asistirás' : 'no asistirás'}}
-            al partido</strong> pero puedes cambiarlo hasta el dia de antes: </span>
+            al partido</strong> pero puedes cambiarlo hasta el dia de antes. </span>
         </p>
-        <article class="confirm-button-section">
+        <p *ngIf="(Date() | date:'dd/MM/yy') == ((nextMatch$ | async)?.matchDay | date:'dd/MM/yy')" class="today-match">
+          El partido es hoy por lo que ya no se permiten cambios
+        </p>
+        <article *ngIf="(Date() | date:'dd/MM/yy') != ((nextMatch$ | async)?.matchDay | date:'dd/MM/yy')"
+                 class="confirm-button-section">
           <button class="info-buttons" mat-raised-button color="primary" (click)="openDialog(true)">Alta</button>
           <button class="info-buttons" mat-raised-button color="warn" (click)="openDialog(false)">Baja</button>
         </article>

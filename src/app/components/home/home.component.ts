@@ -4,7 +4,6 @@ import {MatchService} from "../../services/match.service";
 import {BehaviorSubject} from "rxjs";
 import Match from "../../entities/Match";
 import Member from "../../entities/Member";
-import Player from "../../entities/Player";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {ConfirmAssistanceComponent} from "../dialogs/confirm-assistance/confirm-assistance.component";
 import {ConfirmNoAssistanceComponent} from "../dialogs/confirm-no-assistance/confirm-no-assistance.component";
@@ -23,6 +22,7 @@ export class HomeComponent implements OnInit {
   isMemberConfirmed$ = new BehaviorSubject(false);
   isMemberAssistNextMatch$ = new BehaviorSubject(false);
   isLoading$ = new BehaviorSubject(true);
+  isToday$ = new BehaviorSubject(false);
 
   constructor(private authService: AuthService, private matchService: MatchService, private dialog: MatDialog) {
     this.member$ = this.authService.member$;
@@ -53,7 +53,7 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  createMatch(){
+  createMatch() {
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = true;
@@ -91,5 +91,6 @@ export class HomeComponent implements OnInit {
     })
   }
 
+  protected readonly Date = Date;
   protected readonly Role = Role;
 }

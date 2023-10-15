@@ -2,7 +2,7 @@ import Player from "./Player";
 
 export default interface Match {
   id: number;
-  matchDay: Date
+  matchDay: Date;
   name: string;
   confirmedPlayers: Player[];
   unConfirmedPlayers: Player[];
