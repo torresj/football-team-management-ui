@@ -1,0 +1,26 @@
+.my-balance-section{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 80px;
+}
+
+.movement-table-card{
+  padding: 15px;
+  margin: 20px;
+}
+
+.movement-title-section{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+tr.mat-mdc-footer-row td {
+  font-weight: bold;
+}
+
+td.mat-mdc-footer-cell{
+  border-top: 2px solid black;
+}

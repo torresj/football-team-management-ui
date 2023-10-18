@@ -76,7 +76,7 @@ export class NextMatchComponent implements OnInit {
   }
 
   removePlayerFromTeamA(player: Player) {
-    this.matchService.removePlayerFromTeamA(this.nextMatch$.value!.id, player.id)
+    this.matchService.removePlayerFromTeamA$(this.nextMatch$.value!.id, player.id)
       .subscribe({
           next: () => this.getNextMatch(false)
         }
@@ -84,7 +84,7 @@ export class NextMatchComponent implements OnInit {
   }
 
   removePlayerFromTeamB(player: Player) {
-    this.matchService.removePlayerFromTeamB(this.nextMatch$.value!.id, player.id)
+    this.matchService.removePlayerFromTeamB$(this.nextMatch$.value!.id, player.id)
       .subscribe({
           next: () => this.getNextMatch(false)
         }
@@ -92,7 +92,7 @@ export class NextMatchComponent implements OnInit {
   }
 
   removeGuestFromTeamA(guest: string) {
-    this.matchService.removeGuestFromTeamA(this.nextMatch$.value!.id, guest)
+    this.matchService.removeGuestFromTeamA$(this.nextMatch$.value!.id, guest)
       .subscribe({
           next: () => this.getNextMatch(false)
         }
@@ -100,7 +100,7 @@ export class NextMatchComponent implements OnInit {
   }
 
   removeGuestFromTeamB(guest: string) {
-    this.matchService.removeGuestFromTeamB(this.nextMatch$.value!.id, guest)
+    this.matchService.removeGuestFromTeamB$(this.nextMatch$.value!.id, guest)
       .subscribe({
           next: () => this.getNextMatch(false)
         }

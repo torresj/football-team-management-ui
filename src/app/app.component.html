@@ -32,6 +32,10 @@
       <mat-icon>person</mat-icon>
     </button>
     <mat-menu #logMenu="matMenu">
+      <button mat-menu-item [routerLink]="'/my-balance'">
+        <mat-icon>account_balance</mat-icon>
+        <span>Mi balance</span>
+      </button>
       <button mat-menu-item>
         <mat-icon>password</mat-icon>
         <span>Cambiar contraseña</span>

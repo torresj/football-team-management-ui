@@ -39,7 +39,7 @@ export class AddPlayerToTeamComponent {
   addPlayer() {
     if (this.guestActive.value) {
       this.team == Team.A ?
-        this.matchService.addGuestToTeamA(this.matchId, this.guest)
+        this.matchService.addGuestToTeamA$(this.matchId, this.guest)
           .subscribe({
             next: () => this.dialogRef.close(),
             error: err => {
@@ -48,7 +48,7 @@ export class AddPlayerToTeamComponent {
               this.router.navigateByUrl('/login')
             }
           }) :
-        this.matchService.addGuestToTeamB(this.matchId, this.guest)
+        this.matchService.addGuestToTeamB$(this.matchId, this.guest)
           .subscribe({
             next: () => this.dialogRef.close(),
             error: err => {
@@ -59,7 +59,7 @@ export class AddPlayerToTeamComponent {
           });
     } else {
       this.team == Team.A ?
-        this.matchService.addPlayerToTeamA(this.matchId, this.playerSelected!)
+        this.matchService.addPlayerToTeamA$(this.matchId, this.playerSelected!)
           .subscribe({
             next: () => this.dialogRef.close(),
             error: err => {
@@ -68,7 +68,7 @@ export class AddPlayerToTeamComponent {
               this.router.navigateByUrl('/login')
             }
           }) :
-        this.matchService.addPlayerToTeamB(this.matchId, this.playerSelected!)
+        this.matchService.addPlayerToTeamB$(this.matchId, this.playerSelected!)
           .subscribe({
             next: () => this.dialogRef.close(),
             error: err => {

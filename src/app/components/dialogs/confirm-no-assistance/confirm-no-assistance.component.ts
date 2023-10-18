@@ -20,7 +20,7 @@ export class ConfirmNoAssistanceComponent {
   }
 
   addMemberToMatch() {
-    this.matchService.addPlayerToMatch(this.data, PlayerMatchStatus.NOT_AVAILABLE)
+    this.matchService.addPlayerToMatch$(this.data, PlayerMatchStatus.NOT_AVAILABLE)
       .subscribe({
         next: () => this.dialogRef.close(),
         error: err => {

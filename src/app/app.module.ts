@@ -34,6 +34,8 @@ import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import { CreateMatchComponent } from './components/dialogs/create-match/create-match.component';
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
+import { MyBalanceComponent } from './components/my-balance/my-balance.component';
+import {MatTableModule} from "@angular/material/table";
 
 @NgModule({
   declarations: [
@@ -48,7 +50,8 @@ import {MatNativeDateModule} from "@angular/material/core";
     TeamListComponent,
     TeamItemComponent,
     AddPlayerToTeamComponent,
-    CreateMatchComponent
+    CreateMatchComponent,
+    MyBalanceComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +75,8 @@ import {MatNativeDateModule} from "@angular/material/core";
     MatSlideToggleModule,
     MatDatepickerModule,
     MatInputModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatTableModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]

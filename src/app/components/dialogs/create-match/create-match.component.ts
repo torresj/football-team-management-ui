@@ -20,7 +20,7 @@ export class CreateMatchComponent {
   }
 
   createMatch() {
-    this.matchService.createMatch(this.dateSelected)
+    this.matchService.createMatch$(this.dateSelected)
       .subscribe({
         next: () => this.dialogRef.close(),
         error: err => {

@@ -17,47 +17,47 @@ export class MatchService {
     return this.http.get<Match>(apiConstants.apiBaseUrl + '/v1/matches/next');
   }
 
-  addPlayerToMatch(matchID: number, status: PlayerMatchStatus) {
+  addPlayerToMatch$(matchID: number, status: PlayerMatchStatus) {
     return this.http.post(apiConstants.apiBaseUrl + `/v1/matches/${matchID}/players`, {"status": status});
   }
 
-  removePlayerFromTeamA(matchId: number, playerId: number) {
+  removePlayerFromTeamA$(matchId: number, playerId: number) {
     return this.http.delete(apiConstants.apiBaseUrl + `/v1/matches/${matchId}/players/${playerId}/teama`)
   }
 
-  addPlayerToTeamA(matchId: number, playerId: number) {
+  addPlayerToTeamA$(matchId: number, playerId: number) {
     return this.http.post(apiConstants.apiBaseUrl + `/v1/matches/${matchId}/players/${playerId}/teama`, null);
   }
 
-  addPlayerToTeamB(matchId: number, playerId: number) {
+  addPlayerToTeamB$(matchId: number, playerId: number) {
     return this.http.post(apiConstants.apiBaseUrl + `/v1/matches/${matchId}/players/${playerId}/teamb`, null);
   }
 
-  removePlayerFromTeamB(matchId: number, playerId: number) {
+  removePlayerFromTeamB$(matchId: number, playerId: number) {
     return this.http.delete(apiConstants.apiBaseUrl + `/v1/matches/${matchId}/players/${playerId}/teamb`)
   }
 
-  removeGuestFromTeamA(matchId: number, guest: string) {
+  removeGuestFromTeamA$(matchId: number, guest: string) {
     return this.http.delete(apiConstants.apiBaseUrl + `/v1/matches/${matchId}/guests/teama`,
       {body: {"guest": guest}});
   }
 
-  addGuestToTeamA(matchId: number, guest: string) {
+  addGuestToTeamA$(matchId: number, guest: string) {
     return this.http.post(apiConstants.apiBaseUrl + `/v1/matches/${matchId}/guests/teama`,
       {"guest": guest});
   }
 
-  addGuestToTeamB(matchId: number, guest: string) {
+  addGuestToTeamB$(matchId: number, guest: string) {
     return this.http.post(apiConstants.apiBaseUrl + `/v1/matches/${matchId}/guests/teamb`,
       {"guest": guest});
   }
 
-  removeGuestFromTeamB(matchId: number, guest: string) {
+  removeGuestFromTeamB$(matchId: number, guest: string) {
     return this.http.delete(apiConstants.apiBaseUrl + `/v1/matches/${matchId}/guests/teamb`,
       {body: {"guest": guest}});
   }
 
-  createMatch(date: Date){
+  createMatch$(date: Date){
     const matchDay = (moment(date).format('YYYY-MM-DD'));
     return this.http.post(apiConstants.apiBaseUrl + '/v1/matches',{matchDay: matchDay});
   }

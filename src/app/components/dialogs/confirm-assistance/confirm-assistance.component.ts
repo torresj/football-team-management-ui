@@ -21,7 +21,7 @@ export class ConfirmAssistanceComponent {
   }
 
   addMemberToMatch() {
-    this.matchService.addPlayerToMatch(this.data, PlayerMatchStatus.AVAILABLE)
+    this.matchService.addPlayerToMatch$(this.data, PlayerMatchStatus.AVAILABLE)
       .subscribe({
         next: () => this.dialogRef.close(),
         error: err => {
