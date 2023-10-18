@@ -49,7 +49,7 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.setItem(this.jwt_key, '');
+    localStorage.clear()
     this.member$.next(null);
   }
 

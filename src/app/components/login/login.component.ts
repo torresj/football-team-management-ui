@@ -41,7 +41,10 @@ export class LoginComponent implements OnInit {
   submit() {
     this.submitted = true;
     this.isLoading$.next(true);
+    this.form.get('username')?.setErrors(null);
+    this.form.get('password')?.setErrors(null);
     if (this.form.invalid) {
+      this.isLoading$.next(false);
       return;
     }
 

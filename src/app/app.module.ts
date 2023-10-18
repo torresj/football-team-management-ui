@@ -36,6 +36,7 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import { MyBalanceComponent } from './components/my-balance/my-balance.component';
 import {MatTableModule} from "@angular/material/table";
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import {MatTableModule} from "@angular/material/table";
     TeamItemComponent,
     AddPlayerToTeamComponent,
     CreateMatchComponent,
-    MyBalanceComponent
+    MyBalanceComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,

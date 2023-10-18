@@ -15,4 +15,9 @@ export class MemberService {
   getMe$(): Observable<Member> {
     return this.http.get<Member>(apiConstants.apiBaseUrl + '/v1/members/me')
   }
+
+  updatePassword$(memberId: number, newPassword: string): Observable<Member> {
+    return this.http.patch<Member>(apiConstants.apiBaseUrl + `/v1/members/${memberId}`,
+      {'newPassword': newPassword});
+  }
 }
