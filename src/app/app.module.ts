@@ -19,7 +19,7 @@ import {MatMenuModule} from "@angular/material/menu";
 import { ConfirmAssistanceComponent } from './components/dialogs/confirm-assistance/confirm-assistance.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import { ConfirmNoAssistanceComponent } from './components/dialogs/confirm-no-assistance/confirm-no-assistance.component';
-import { NextMatchComponent } from './components/next-match/next-match.component';
+import { NextMatchComponent } from './components/matches/next-match/next-match.component';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import { PlayerListComponent } from './components/player-list/player-list.component';
 import {MatCardModule} from "@angular/material/card";
@@ -37,6 +37,9 @@ import {MatNativeDateModule} from "@angular/material/core";
 import { MyBalanceComponent } from './components/my-balance/my-balance.component';
 import {MatTableModule} from "@angular/material/table";
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { MatchComponent } from './components/matches/match/match.component';
+import { MatchesComponent } from './components/matches/matches.component';
+import { MembersComponent } from './components/members/members.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +56,10 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
     AddPlayerToTeamComponent,
     CreateMatchComponent,
     MyBalanceComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    MatchComponent,
+    MatchesComponent,
+    MembersComponent
   ],
   imports: [
     BrowserModule,

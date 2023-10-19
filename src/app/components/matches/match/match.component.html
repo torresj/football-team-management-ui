@@ -1,0 +1,24 @@
+<section class="match-section">
+  <article class="match-title">
+    <h2>Partido jugado el {{match.matchDay | date: 'dd/MM/yy'}}</h2>
+  </article>
+
+  <div class="player-names"><strong>Jugadores sin confirmar: </strong> <span
+    *ngFor="let player of unConfirmedPlayers()">{{player}}
+    , </span></div>
+
+  <div class="player-names"><strong>Altas: </strong> <span *ngFor="let player of confirmedPlayers()">{{player}}
+    , </span></div>
+
+
+  <div class="player-names"><strong>Bajas: </strong> <span *ngFor="let player of notAvailablePlayers()">{{player}}
+    , </span></div>
+
+
+  <div class="player-names"><strong>Equipo Blanco: </strong> <span *ngFor="let player of teamA()">{{player}}
+    , </span></div>
+
+  <div class="player-names"><strong>Equipo Rojo: </strong> <span *ngFor="let player of teamB()">{{player}}, </span>
+  </div>
+
+</section>

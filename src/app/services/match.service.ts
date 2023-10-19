@@ -13,6 +13,10 @@ export class MatchService {
   constructor(private http: HttpClient) {
   }
 
+  getOldMatches$(){
+    return this.http.get<Match[]>(apiConstants.apiBaseUrl + '/v1/matches')
+  }
+
   getNextMatch$() {
     return this.http.get<Match>(apiConstants.apiBaseUrl + '/v1/matches/next');
   }

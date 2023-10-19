@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {BehaviorSubject} from "rxjs";
-import Match from "../../entities/Match";
-import {MatchService} from "../../services/match.service";
-import Player from "../../entities/Player";
+import Match from "../../../entities/Match";
+import {MatchService} from "../../../services/match.service";
+import Player from "../../../entities/Player";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
-import AddPlayerData from "../../entities/AddPlayerData";
-import {AddPlayerToTeamComponent} from "../dialogs/add-player-to-team/add-player-to-team.component";
-import {Team} from "../../entities/Team";
+import AddPlayerData from "../../../entities/AddPlayerData";
+import {AddPlayerToTeamComponent} from "../../dialogs/add-player-to-team/add-player-to-team.component";
+import {Team} from "../../../entities/Team";
 
 @Component({
   selector: 'app-next-match',

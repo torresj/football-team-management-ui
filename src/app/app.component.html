@@ -8,7 +8,7 @@
         <mat-icon>sports_soccer</mat-icon>
         <span>Partidos</span>
       </button>
-      <button mat-menu-item>
+      <button mat-menu-item [routerLink]="'/members'">
         <mat-icon>groups</mat-icon>
         <span>Miembros</span>
       </button>
@@ -21,7 +21,7 @@
       <button mat-menu-item [routerLink]="'/matches/next-match'">
         Siguiente partido
       </button>
-      <button mat-menu-item>
+      <button mat-menu-item [routerLink]="'/matches'">
         Partidos anteriores
       </button>
     </mat-menu>

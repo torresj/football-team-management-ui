@@ -1,0 +1,18 @@
+.match-title{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.player-names{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  font-size: 1.2em;
+  margin: 15px 0;
+}
+
+.player-names strong{
+  margin-right: 5px;
+}

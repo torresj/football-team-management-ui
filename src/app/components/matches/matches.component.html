@@ -1,0 +1,18 @@
+<section class="matches-section">
+  <article *ngIf="(isLoading$ | async)">
+    <mat-spinner></mat-spinner>
+  </article>
+  <article>
+    <article class="mat-elevation-z8 match-article" *ngIf="!(isLoading$ | async)">
+      <app-match [match]="matches[index]"/>
+    </article>
+    <article class="match-buttons">
+      <button [disabled]="index == 0" mat-icon-button color="primary" (click)="previousMatch()">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <button [disabled]="index == matches.length -1"  mat-icon-button color="primary" (click)="nextMatch()">
+        <mat-icon>arrow_forward</mat-icon>
+      </button>
+    </article>
+  </article>
+</section>
