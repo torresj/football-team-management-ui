@@ -3,25 +3,13 @@
 # ----------------------------
 FROM node:18 AS build
 
-# Set the working directory
-WORKDIR /usr/local/app
-
-# Add the source code to app
-COPY ./ /usr/local/app/
-
-# Install all the dependencies
+WORKDIR /app
+COPY package.json .
 RUN npm install
-
-# Generate the build of the application
+COPY . .
 RUN npm run build
-
-# ----------------------------
-# run with nginx
-# ----------------------------
+# deploy
 FROM nginx
-
-RUN rm /etc/nginx/conf.d/default.conf
-COPY nginx.conf /etc/nginx/conf.d
-COPY --from=build /app/dist/football-management-team-ui /usr/share/nginx/html
-
 EXPOSE 80
+COPY ./conf/default.conf /etc/nginx/conf.d/default.conf
+COPY --from=builder /app/dist/ /usr/share/nginx/html
