@@ -3,12 +3,16 @@
 # ----------------------------
 FROM node:18 AS build
 
-WORKDIR /app
+# Set the working directory
+WORKDIR /usr/local/app
 
-COPY package*.json .
+# Add the source code to app
+COPY ./ /usr/local/app/
+
+# Install all the dependencies
 RUN npm install
 
-COPY . .
+# Generate the build of the application
 RUN npm run build
 
 # ----------------------------
@@ -18,6 +22,6 @@ FROM nginx
 
 RUN rm /etc/nginx/conf.d/default.conf
 COPY nginx.conf /etc/nginx/conf.d
-COPY --from=build /app/dist/angular-tutorial /usr/share/nginx/html
+COPY --from=build /app/dist/football-management-team-ui /usr/share/nginx/html
 
 EXPOSE 80
