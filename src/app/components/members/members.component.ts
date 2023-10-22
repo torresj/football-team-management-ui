@@ -47,6 +47,8 @@ export class MembersComponent implements OnInit {
         }
       }
     );
+
+    this.getMembers();
   }
 
   private getMembers(){
