@@ -2,7 +2,13 @@
   <section *ngIf="isLoading$ | async">
     <mat-spinner></mat-spinner>
   </section>
-  <section *ngIf="!(isLoading$ | async)" class="mat-elevation-z8">
+  <section *ngIf="!(isLoading$ | async)" class="mat-elevation-z8 members-table-section">
+    <section class="members-title-section">
+      <h2>Lista de miembros</h2>
+    </section>
+    <section class="members-buttons-section">
+      <button mat-flat-button color="accent">Añadir miembro</button>
+    </section>
     <table mat-table [dataSource]="dataSource">
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef> Nombre</th>
@@ -27,6 +33,28 @@
       <ng-container matColumnDef="balance">
         <th mat-header-cell *matHeaderCellDef> Balance</th>
         <td mat-cell *matCellDef="let member"> {{member.balance}}€ </td>
+      </ng-container>
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let member">
+          <button mat-icon-button [matMenuTriggerFor]="memberMenu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #memberMenu="matMenu">
+            <button mat-menu-item>
+              <mat-icon>delete</mat-icon>
+              <span>Borrar</span>
+            </button>
+            <button mat-menu-item>
+              <mat-icon>edit</mat-icon>
+              <span>Editar</span>
+            </button>
+            <button mat-menu-item>
+              <mat-icon>visibility</mat-icon>
+              <span>Ver</span>
+            </button>
+          </mat-menu>
+        </td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="columns"></tr>
       <tr mat-row *matRowDef="let row; columns: columns;"></tr>
