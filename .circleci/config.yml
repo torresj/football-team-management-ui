@@ -12,7 +12,7 @@ jobs:
     # Be sure to update the Docker image tag below to openjdk version of your application.
     # A list of available CircleCI Docker Convenience Images are available here: https://circleci.com/developer/images/image/cimg/openjdk
     docker:
-      - image: cimg/node:18.17
+      - image: cimg/node:18.17-browsers
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
@@ -46,14 +46,10 @@ jobs:
       - run:
           name: Login docker registry
           command: docker login $REGISTRIY_URL -u $REGISTRY_USER -p $REGISTRY_PASSWORD
-      # Install Angular CLI
-      - run:
-          name: Install Angular CLI
-          command: npm install -g @angular/cli
       # Build
       - run:
           name: Build
-          command: ng build
+          command: npm install && npm run build
       # Generate docker image
       - run:
           name: Generate docker image
