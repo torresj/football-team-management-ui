@@ -46,10 +46,14 @@ jobs:
       - run:
           name: Login docker registry
           command: docker login $REGISTRIY_URL -u $REGISTRY_USER -p $REGISTRY_PASSWORD
+      # Install Angular CLI
+      - run:
+          name: Install Angular CLI
+          command: npm install -g @angular/cli
       # Build
       - run:
           name: Build
-          command: npm run build
+          command: ng build
       # Generate docker image
       - run:
           name: Generate docker image
