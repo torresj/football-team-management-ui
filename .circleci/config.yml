@@ -46,10 +46,6 @@ jobs:
       - run:
           name: Login docker registry
           command: docker login $REGISTRIY_URL -u $REGISTRY_USER -p $REGISTRY_PASSWORD
-      # Build
-      - run:
-          name: Build
-          command: npm install && npm run build
       # Generate docker image
       - run:
           name: Generate docker image
