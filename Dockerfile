@@ -1,7 +1,7 @@
 # ----------------------------
 # build from source
 # ----------------------------
-FROM node:18 AS build
+FROM node:latest AS build
 
 # Set the working directory
 WORKDIR /usr/local/app
