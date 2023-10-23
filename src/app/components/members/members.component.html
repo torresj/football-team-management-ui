@@ -6,8 +6,8 @@
     <section class="members-title-section">
       <h2>Lista de miembros</h2>
     </section>
-    <section class="members-buttons-section">
-      <button mat-flat-button color="accent">Añadir miembro</button>
+    <section class="members-buttons-section" *ngIf="isAdmin | async">
+      <button mat-flat-button color="accent" (click)="createMember()">Añadir miembro</button>
     </section>
     <table mat-table [dataSource]="dataSource">
       <ng-container matColumnDef="name">

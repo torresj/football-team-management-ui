@@ -8,6 +8,8 @@ import {MatTableDataSource} from "@angular/material/table";
 import {MovementType} from "../../entities/MovementType";
 import {Role} from "../../entities/Role";
 import {BreakpointObserver} from "@angular/cdk/layout";
+import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import {CreateMemberComponent} from "../dialogs/create-member/create-member.component";
 
 @Component({
   selector: 'app-members',
@@ -17,41 +19,46 @@ import {BreakpointObserver} from "@angular/cdk/layout";
 export class MembersComponent implements OnInit {
   isLoading$ = new BehaviorSubject(true);
   dataSource = new MatTableDataSource<Member>();
-  columnsToDisplay = ['name', 'surname', 'phone', 'nCaptaincies', 'role', 'balance', 'actions'];
-  columnsToDisplayInSmallScreens = ['name', 'surname', 'actions'];
+  columnsToDisplay = ['name', 'surname', 'phone', 'nCaptaincies', 'role', 'balance'];
+  columnsToDisplayInSmallScreens = ['name', 'surname', 'balance'];
+  columnsToDisplayAdmin = ['name', 'surname', 'phone', 'nCaptaincies', 'role', 'balance'];
+  columnsToDisplayInSmallScreensAdmin = ['name', 'surname', 'actions'];
   columns = this.columnsToDisplay;
   isAdmin = new BehaviorSubject(false);
 
   constructor(private memberService: MemberService,
               private authService: AuthService,
               private router: Router,
-              private responsive: BreakpointObserver) {
+              private responsive: BreakpointObserver,
+              private dialog: MatDialog) {
   }
 
   ngOnInit(): void {
     this.authService.member$.subscribe({
       next: member => {
-        if(member?.role == Role.ADMIN){
+        if (member?.role == Role.ADMIN) {
           this.isAdmin.next(true);
         }
+
+        this.responsive.observe(['(min-width: 700px)']).subscribe(
+          {
+            next: value => {
+              if (value.matches) {
+                this.columns = this.isAdmin.value ? this.columnsToDisplayAdmin : this.columnsToDisplay;
+              } else {
+                this.columns = this.isAdmin.value ? this.columnsToDisplayInSmallScreensAdmin : this.columnsToDisplayInSmallScreens;
+              }
+            }
+          }
+        );
       }
     });
-    this.responsive.observe(['(min-width: 700px)']).subscribe(
-      {
-        next: value => {
-          if (value.matches) {
-            this.columns = this.columnsToDisplay;
-          } else {
-            this.columns = this.columnsToDisplayInSmallScreens;
-          }
-        }
-      }
-    );
+
 
     this.getMembers();
   }
 
-  private getMembers(){
+  private getMembers() {
     this.memberService.getAll$().subscribe({
       next: members => {
         this.dataSource.data = members;
@@ -62,6 +69,18 @@ export class MembersComponent implements OnInit {
         this.router.navigateByUrl('/login')
       }
     });
+  }
+
+  createMember() {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = true;
+
+    this.dialog.open(CreateMemberComponent, dialogConfig).afterClosed()
+      .subscribe({
+        next: () => this.getMembers()
+      });
   }
 
   protected readonly MovementType = MovementType;

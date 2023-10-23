@@ -40,6 +40,7 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
 import { MatchComponent } from './components/matches/match/match.component';
 import { MatchesComponent } from './components/matches/matches.component';
 import { MembersComponent } from './components/members/members.component';
+import { CreateMemberComponent } from './components/dialogs/create-member/create-member.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { MembersComponent } from './components/members/members.component';
     ChangePasswordComponent,
     MatchComponent,
     MatchesComponent,
-    MembersComponent
+    MembersComponent,
+    CreateMemberComponent
   ],
   imports: [
     BrowserModule,
