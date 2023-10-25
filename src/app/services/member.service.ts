@@ -21,8 +21,8 @@ export class MemberService {
     return this.http.get<Member[]>(apiConstants.apiBaseUrl + '/v1/members');
   }
 
-  updatePassword$(memberId: number, newPassword: string): Observable<Member> {
-    return this.http.patch<Member>(apiConstants.apiBaseUrl + `/v1/members/${memberId}`,
+  updatePassword$(newPassword: string): Observable<Member> {
+    return this.http.patch<Member>(apiConstants.apiBaseUrl + '/v1/members/me',
       {'newPassword': newPassword});
   }
 

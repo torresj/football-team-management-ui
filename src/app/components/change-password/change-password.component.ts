@@ -33,7 +33,7 @@ export class ChangePasswordComponent implements OnInit {
       this.isLoading$.next(false);
       return
     } else {
-      this.memberService.updatePassword$(this.authService.member$.value!.id, this.form.get('newPassword')?.value)
+      this.memberService.updatePassword$(this.form.get('newPassword')?.value)
         .subscribe({
           next:()=>{
             this.authService.logout();
