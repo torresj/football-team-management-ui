@@ -2,17 +2,20 @@
   <article *ngIf="(isLoading$ | async)">
     <mat-spinner></mat-spinner>
   </article>
-  <article>
-    <article class="mat-elevation-z8 match-article" *ngIf="!(isLoading$ | async)">
+  <article *ngIf="!(isLoading$ | async)">
+    <article class="mat-elevation-z8 match-article" *ngIf="matches.length > 0">
       <app-match [match]="matches[index]"/>
     </article>
-    <article class="match-buttons">
+    <article class="match-buttons" *ngIf="matches.length > 0">
       <button [disabled]="index == 0" mat-icon-button color="primary" (click)="previousMatch()">
         <mat-icon>arrow_back</mat-icon>
       </button>
       <button [disabled]="index == matches.length -1"  mat-icon-button color="primary" (click)="nextMatch()">
         <mat-icon>arrow_forward</mat-icon>
       </button>
+    </article>
+    <article *ngIf="matches.length == 0" class="no-matches-section">
+      No hay partidos anteriores
     </article>
   </article>
 </section>
