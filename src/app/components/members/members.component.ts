@@ -21,7 +21,7 @@ export class MembersComponent implements OnInit {
   dataSource = new MatTableDataSource<Member>();
   columnsToDisplay = ['name', 'surname', 'phone', 'nCaptaincies', 'role', 'balance'];
   columnsToDisplayInSmallScreens = ['name', 'surname', 'balance'];
-  columnsToDisplayAdmin = ['name', 'surname', 'phone', 'nCaptaincies', 'role', 'balance'];
+  columnsToDisplayAdmin = ['name', 'surname', 'phone', 'nCaptaincies', 'role', 'balance', 'actions'];
   columnsToDisplayInSmallScreensAdmin = ['name', 'surname', 'actions'];
   columns = this.columnsToDisplay;
   isAdmin = new BehaviorSubject(false);

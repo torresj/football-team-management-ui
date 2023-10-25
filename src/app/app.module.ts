@@ -41,6 +41,7 @@ import { MatchComponent } from './components/matches/match/match.component';
 import { MatchesComponent } from './components/matches/matches.component';
 import { MembersComponent } from './components/members/members.component';
 import { CreateMemberComponent } from './components/dialogs/create-member/create-member.component';
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 @NgModule({
   declarations: [
@@ -86,7 +87,8 @@ import { CreateMemberComponent } from './components/dialogs/create-member/create
     MatDatepickerModule,
     MatInputModule,
     MatNativeDateModule,
-    MatTableModule
+    MatTableModule,
+    MatSnackBarModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
