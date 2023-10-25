@@ -38,7 +38,6 @@ export class AuthService {
       shareReplay(1),
       tap(jwt => {
         localStorage.setItem(this.jwt_key, jwt.jwt);
-        console.log(jwt.jwt)
       }),
       concatWith(this.memberService.getMe$().pipe(tap(member => this.member$.next(member))))
     );
