@@ -17,10 +17,6 @@
   margin-top: 10px;
 }
 
-tr.mat-mdc-footer-row td {
-  font-weight: bold;
-}
-
 td.mat-mdc-footer-cell{
   border-top: 2px solid black;
 }

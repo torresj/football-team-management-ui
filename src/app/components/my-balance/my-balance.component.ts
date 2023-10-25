@@ -21,6 +21,7 @@ export class MyBalanceComponent implements OnInit {
   columnsToDisplayInSmallScreens = ['createdOn', 'description', 'amount'];
   member$: BehaviorSubject<Member | null>;
   columns = this.columnsToDisplay;
+  isLoading$ = new BehaviorSubject(true);
 
 
   constructor(private authService: AuthService,
@@ -35,7 +36,10 @@ export class MyBalanceComponent implements OnInit {
       next: member => {
         if (member != null) {
           this.movementService.getBalanceByMemberId$(member.id).subscribe({
-            next: movements => this.dataSource.data = movements,
+            next: movements => {
+              this.dataSource.data = movements
+              this.isLoading$.next(false);
+            },
             error: err => {
               this.authService.logout();
               this.router.navigateByUrl('/login');
