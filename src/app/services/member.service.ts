@@ -34,4 +34,8 @@ export class MemberService {
       role: role
     });
   }
+
+  delete$(memberId: number){
+    return this.http.delete(apiConstants.apiBaseUrl + `/v1/members/${memberId}`);
+  }
 }

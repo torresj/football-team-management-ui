@@ -10,6 +10,7 @@ import {Role} from "../../entities/Role";
 import {BreakpointObserver} from "@angular/cdk/layout";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {CreateMemberComponent} from "../dialogs/create-member/create-member.component";
+import {DeleteMemberComponent} from "../dialogs/delete-member/delete-member.component";
 
 @Component({
   selector: 'app-members',
@@ -78,6 +79,19 @@ export class MembersComponent implements OnInit {
     dialogConfig.autoFocus = true;
 
     this.dialog.open(CreateMemberComponent, dialogConfig).afterClosed()
+      .subscribe({
+        next: () => this.getMembers()
+      });
+  }
+
+  deleteMember(member: Member) {
+    const dialogConfig = new MatDialogConfig<Member>();
+
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = member;
+
+    this.dialog.open(DeleteMemberComponent, dialogConfig).afterClosed()
       .subscribe({
         next: () => this.getMembers()
       });

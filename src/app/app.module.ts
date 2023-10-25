@@ -42,6 +42,7 @@ import { MatchesComponent } from './components/matches/matches.component';
 import { MembersComponent } from './components/members/members.component';
 import { CreateMemberComponent } from './components/dialogs/create-member/create-member.component';
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import { DeleteMemberComponent } from './components/dialogs/delete-member/delete-member.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     MatchComponent,
     MatchesComponent,
     MembersComponent,
-    CreateMemberComponent
+    CreateMemberComponent,
+    DeleteMemberComponent
   ],
   imports: [
     BrowserModule,

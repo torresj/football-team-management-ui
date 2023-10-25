@@ -41,7 +41,7 @@
             <mat-icon>more_vert</mat-icon>
           </button>
           <mat-menu #memberMenu="matMenu">
-            <button mat-menu-item>
+            <button mat-menu-item (click)="deleteMember(member)">
               <mat-icon>delete</mat-icon>
               <span>Borrar</span>
             </button>

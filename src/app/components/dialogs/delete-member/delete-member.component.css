@@ -1,0 +1,10 @@
+.dialog-action-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-right: 10px;
+}
+
+.delete-member-section {
+  padding: 15px 5px;
+}
