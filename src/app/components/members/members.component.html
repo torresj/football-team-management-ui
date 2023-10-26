@@ -51,13 +51,17 @@
               <mat-icon>delete</mat-icon>
               <span>Borrar</span>
             </button>
-            <button mat-menu-item>
+            <button mat-menu-item (click)="editMember(member)">
               <mat-icon>edit</mat-icon>
               <span>Editar</span>
             </button>
             <button mat-menu-item>
               <mat-icon>visibility</mat-icon>
               <span>Ver</span>
+            </button>
+            <button mat-menu-item>
+              <mat-icon>healing</mat-icon>
+              <span>Lesionado</span>
             </button>
           </mat-menu>
         </td>

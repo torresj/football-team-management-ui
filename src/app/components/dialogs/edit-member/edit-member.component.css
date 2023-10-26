@@ -1,0 +1,16 @@
+.edit-member-form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 10px 5px;
+}
+
+.mat-mdc-form-field{
+  margin: 5px 0;
+}
+
+.dialog-action-buttons{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}

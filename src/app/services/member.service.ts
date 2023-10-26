@@ -35,6 +35,16 @@ export class MemberService {
     });
   }
 
+  update$(memberId: number, name: string, surname: string, phone: string, role: Role, nCapitancies: number){
+    return this.http.put(apiConstants.apiBaseUrl + `/v1/members/${memberId}`,{
+      name: name,
+      surname: surname,
+      phone: phone,
+      role: role,
+      nCaptaincies: nCapitancies
+    });
+  }
+
   delete$(memberId: number){
     return this.http.delete(apiConstants.apiBaseUrl + `/v1/members/${memberId}`);
   }
