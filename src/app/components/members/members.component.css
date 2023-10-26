@@ -1,24 +1,51 @@
-.members-section{
+.members-section {
   display: flex;
   flex-direction: row;
   justify-content: center;
   margin-top: 20px;
 }
 
-.members-table-section{
+.members-table-section {
   padding: 20px;
 }
 
-.members-title-section{
+.members-title-section {
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
 
-.members-buttons-section{
+.members-buttons-section {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   margin-right: 10px;
   margin-bottom: 10px;
+}
+
+.injured {
+  background-color: rgb(253, 188, 188);
+}
+
+.members-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.injured-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding-left: 15px;
+}
+
+.legend {
+  margin-left: 10px;
+  width: 20px;
+  height: 20px;
+  background-color: rgb(253, 188, 188);
+  border: 1px solid black;
 }

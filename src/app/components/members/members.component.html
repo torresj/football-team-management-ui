@@ -6,8 +6,14 @@
     <section class="members-title-section">
       <h2>Lista de miembros</h2>
     </section>
-    <section class="members-buttons-section" *ngIf="isAdmin | async">
-      <button mat-flat-button color="accent" (click)="createMember()">Añadir miembro</button>
+    <section class="members-header">
+      <section class="injured-header">
+        <span>Lesionado </span>
+        <div class="legend"></div>
+      </section>
+      <section class="members-buttons-section" *ngIf="isAdmin | async">
+        <button mat-flat-button color="accent" (click)="createMember()">Añadir miembro</button>
+      </section>
     </section>
     <table mat-table [dataSource]="dataSource">
       <ng-container matColumnDef="name">
@@ -28,11 +34,11 @@
       </ng-container>
       <ng-container matColumnDef="role">
         <th mat-header-cell *matHeaderCellDef> Role</th>
-        <td mat-cell *matCellDef="let member"> {{member.role == Role.ADMIN? 'Admin' : 'Usuario'}} </td>
+        <td mat-cell *matCellDef="let member"> {{member.role == Role.ADMIN ? 'Admin' : 'Usuario'}} </td>
       </ng-container>
       <ng-container matColumnDef="balance">
         <th mat-header-cell *matHeaderCellDef> Balance</th>
-        <td mat-cell *matCellDef="let member"> {{member.balance}}€ </td>
+        <td mat-cell *matCellDef="let member"> {{member.balance}}€</td>
       </ng-container>
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef></th>
@@ -57,7 +63,7 @@
         </td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="columns"></tr>
-      <tr mat-row *matRowDef="let row; columns: columns;"></tr>
+      <tr mat-row *matRowDef="let member; columns: columns;" [class]="member.injured? 'injured':''"></tr>
     </table>
   </section>
 </section>

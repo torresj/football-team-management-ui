@@ -8,4 +8,5 @@ export default interface Member{
   nCaptaincies: number;
   role: Role;
   balance: number;
+  injured: boolean;
 }
