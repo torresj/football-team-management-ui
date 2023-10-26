@@ -17,7 +17,7 @@ export class MemberService {
     return this.http.get<Member>(apiConstants.apiBaseUrl + '/v1/members/me')
   }
 
-  getAll$(){
+  getAll$() {
     return this.http.get<Member[]>(apiConstants.apiBaseUrl + '/v1/members');
   }
 
@@ -26,8 +26,8 @@ export class MemberService {
       {'newPassword': newPassword});
   }
 
-  create$(name: string, surname: string, phone: string, role: Role){
-    return this.http.post(apiConstants.apiBaseUrl + '/v1/members',{
+  create$(name: string, surname: string, phone: string, role: Role) {
+    return this.http.post(apiConstants.apiBaseUrl + '/v1/members', {
       name: name,
       surname: surname,
       phone: phone,
@@ -35,8 +35,8 @@ export class MemberService {
     });
   }
 
-  update$(memberId: number, name: string, surname: string, phone: string, role: Role, nCapitancies: number){
-    return this.http.put(apiConstants.apiBaseUrl + `/v1/members/${memberId}`,{
+  update$(memberId: number, name: string, surname: string, phone: string, role: Role, nCapitancies: number) {
+    return this.http.put(apiConstants.apiBaseUrl + `/v1/members/${memberId}`, {
       name: name,
       surname: surname,
       phone: phone,
@@ -45,7 +45,13 @@ export class MemberService {
     });
   }
 
-  delete$(memberId: number){
+  updateInjuredMember$(memberId: number, injured: boolean) {
+    return this.http.patch(apiConstants.apiBaseUrl + `/v1/members/${memberId}/injured`, {
+      injured: injured
+    });
+  }
+
+  delete$(memberId: number) {
     return this.http.delete(apiConstants.apiBaseUrl + `/v1/members/${memberId}`);
   }
 }

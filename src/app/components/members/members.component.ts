@@ -12,6 +12,7 @@ import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {CreateMemberComponent} from "../dialogs/create-member/create-member.component";
 import {DeleteMemberComponent} from "../dialogs/delete-member/delete-member.component";
 import {EditMemberComponent} from "../dialogs/edit-member/edit-member.component";
+import {InjuredMemberComponent} from "../dialogs/injured-member/injured-member.component";
 
 @Component({
   selector: 'app-members',
@@ -106,6 +107,19 @@ export class MembersComponent implements OnInit {
     dialogConfig.data = member;
 
     this.dialog.open(EditMemberComponent, dialogConfig).afterClosed()
+      .subscribe({
+        next: () => this.getMembers()
+      });
+  }
+
+  injuredMember(member: Member) {
+    const dialogConfig = new MatDialogConfig<Member>();
+
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = member;
+
+    this.dialog.open(InjuredMemberComponent, dialogConfig).afterClosed()
       .subscribe({
         next: () => this.getMembers()
       });
