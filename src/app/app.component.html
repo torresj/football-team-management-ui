@@ -16,6 +16,10 @@
         <mat-icon>account_balance</mat-icon>
         <span>Balance</span>
       </button>
+      <button mat-menu-item  [routerLink]="'/rules'">
+        <mat-icon>gavel</mat-icon>
+        <span>Normas</span>
+      </button>
     </mat-menu>
     <mat-menu #matchesMenu="matMenu">
       <button mat-menu-item [routerLink]="'/matches/next-match'">
