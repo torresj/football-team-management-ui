@@ -4,7 +4,8 @@
   </section>
   <section *ngIf="!(isLoading$ | async)" class="mat-elevation-z8 members-table-section">
     <section class="members-title-section">
-      <h2>Lista de miembros</h2>
+      <h2 [matBadge]="dataSource.data.length" matBadgePosition="after" matBadgeColor="primary"
+          matBadgeOverlap="false">Lista de miembros</h2>
     </section>
     <section class="members-header">
       <section class="injured-header">
