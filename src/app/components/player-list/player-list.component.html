@@ -1,7 +1,8 @@
 <section class="players-card">
   <mat-card>
     <section class="player-list-title">
-      <span>{{title}}</span>
+      <span [matBadge]="players.length" matBadgePosition="after" matBadgeColor="primary"
+            matBadgeOverlap="false">{{title}}</span>
     </section>
     <mat-divider></mat-divider>
     <mat-card-content>

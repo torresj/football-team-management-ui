@@ -46,6 +46,7 @@ import {DeleteMemberComponent} from './components/dialogs/delete-member/delete-m
 import {EditMemberComponent} from './components/dialogs/edit-member/edit-member.component';
 import {InjuredMemberComponent} from './components/dialogs/injured-member/injured-member.component';
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatBadgeModule} from "@angular/material/badge";
 
 @NgModule({
   declarations: [
@@ -71,33 +72,34 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     EditMemberComponent,
     InjuredMemberComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    RouterOutlet,
-    AppRoutingModule,
-    MatToolbarModule,
-    MatInputModule,
-    MatButtonModule,
-    FormsModule,
-    MatIconModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    MatMenuModule,
-    MatDialogModule,
-    MatProgressSpinnerModule,
-    MatCardModule,
-    MatDividerModule,
-    MatListModule,
-    MatSelectModule,
-    MatSlideToggleModule,
-    MatDatepickerModule,
-    MatInputModule,
-    MatNativeDateModule,
-    MatTableModule,
-    MatSnackBarModule,
-    MatCheckboxModule
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        RouterOutlet,
+        AppRoutingModule,
+        MatToolbarModule,
+        MatInputModule,
+        MatButtonModule,
+        FormsModule,
+        MatIconModule,
+        HttpClientModule,
+        ReactiveFormsModule,
+        MatMenuModule,
+        MatDialogModule,
+        MatProgressSpinnerModule,
+        MatCardModule,
+        MatDividerModule,
+        MatListModule,
+        MatSelectModule,
+        MatSlideToggleModule,
+        MatDatepickerModule,
+        MatInputModule,
+        MatNativeDateModule,
+        MatTableModule,
+        MatSnackBarModule,
+        MatCheckboxModule,
+        MatBadgeModule
+    ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
