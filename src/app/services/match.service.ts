@@ -65,4 +65,12 @@ export class MatchService {
     const matchDay = (moment(date).format('YYYY-MM-DD'));
     return this.http.post(apiConstants.apiBaseUrl + '/v1/matches',{matchDay: matchDay});
   }
+
+  addCaptainToTeamA(matchId: number){
+    return this.http.post(apiConstants.apiBaseUrl + `/v1/matches/${matchId}/captainA`,null);
+  }
+
+  addCaptainToTeamB(matchId: number){
+    return this.http.post(apiConstants.apiBaseUrl + `/v1/matches/${matchId}/captainB`,null);
+  }
 }

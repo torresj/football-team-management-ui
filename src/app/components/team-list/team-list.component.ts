@@ -11,10 +11,12 @@ export class TeamListComponent {
   @Input() players!: Player[];
   @Input() guests!: string[];
   @Input() title!: string;
+  @Input() captain?: Player;
 
   @Output() removePlayerEvent = new EventEmitter<Player>();
   @Output() removeGuestEvent = new EventEmitter<string>();
   @Output() addPlayerEvent = new EventEmitter();
+  @Output() addCaptainEvent = new EventEmitter();
 
   isAdmin = false;
 
@@ -32,5 +34,9 @@ export class TeamListComponent {
 
   addPlayer(){
     this.addPlayerEvent.emit();
+  }
+
+  addCaptain(){
+    this.addCaptainEvent.emit();
   }
 }

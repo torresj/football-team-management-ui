@@ -27,7 +27,7 @@
 .card-action-buttons{
   margin-bottom: 20px;
   margin-right: 20px;
-  margin-top: 10px;
+  margin-top: 20px;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -42,5 +42,13 @@
 
 .delete-button{
   margin-left: 10px;
+}
+
+.add-captain-button{
+  margin-right: 30px;
+}
+
+.captain-section{
+  margin-left: 15px;
 }
 

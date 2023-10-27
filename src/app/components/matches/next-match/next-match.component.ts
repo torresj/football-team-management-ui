@@ -7,6 +7,7 @@ import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import AddPlayerData from "../../../entities/AddPlayerData";
 import {AddPlayerToTeamComponent} from "../../dialogs/add-player-to-team/add-player-to-team.component";
 import {Team} from "../../../entities/Team";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-next-match',
@@ -105,6 +106,20 @@ export class NextMatchComponent implements OnInit {
           next: () => this.getNextMatch(false)
         }
       );
+  }
+
+  addCaptainToTeamA() {
+    this.matchService.addCaptainToTeamA(this.nextMatch$.value!.id).subscribe({
+      next: () => this.getNextMatch(false),
+      error: (err: HttpErrorResponse) => console.log(err.message)
+    });
+  }
+
+  addCaptainToTeamB() {
+    this.matchService.addCaptainToTeamB(this.nextMatch$.value!.id).subscribe({
+      next: () => this.getNextMatch(false),
+      error: (err: HttpErrorResponse) => console.log(err.message)
+    });
   }
 
   private getAvailablePlayers() {

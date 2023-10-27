@@ -18,13 +18,17 @@
       </article>
       <article class="next-match-cards">
         <app-team-list [players]="match.teamAPlayers" [guests]="match.teamAGuests" title="Equipo Blanco"
+                       [captain]="match.captainTeamA"
                        (removePlayerEvent)="removePlayerFromTeamA($event)"
                        (removeGuestEvent)="removeGuestFromTeamA($event)"
-                       (addPlayerEvent)="addPlayerToTeamA()"/>
+                       (addPlayerEvent)="addPlayerToTeamA()"
+                       (addCaptainEvent)="addCaptainToTeamA()"/>
         <app-team-list [players]="match.teamBPlayers" [guests]="match.teamBGuests" title="Equipo Rojo"
+                       [captain]="match.captainTeamB"
                        (removePlayerEvent)="removePlayerFromTeamB($event)"
                        (removeGuestEvent)="removeGuestFromTeamB($event)"
-                       (addPlayerEvent)="addPlayerToTeamB()"/>
+                       (addPlayerEvent)="addPlayerToTeamB()"
+                       (addCaptainEvent)="addCaptainToTeamB()"/>
       </article>
     </article>
   </article>

@@ -10,5 +10,7 @@ export default interface Match {
   teamBPlayers: Player[];
   teamAGuests: string[];
   teamBGuests: string[];
+  captainTeamA: Player;
+  captainTeamB: Player;
   closed: boolean;
 }

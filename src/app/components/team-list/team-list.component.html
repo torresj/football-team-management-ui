@@ -33,9 +33,18 @@
             </div>
           </mat-list-item>
         </section>
+        <section *ngIf="captain">
+          <div mat-subheader>Capitan</div>
+          <section class="captain-section">
+            <app-team-item [player]="captain"/>
+          </section>
+        </section>
       </mat-list>
     </mat-card-content>
     <section *ngIf="isAdmin" class="card-action-buttons">
+      <button mat-fab color="accent" (click)="addCaptain()" class="add-captain-button">
+        <mat-icon>military_tech</mat-icon>
+      </button>
       <button mat-fab color="primary" (click)="addPlayer()">
         <mat-icon>person_add</mat-icon>
       </button>
