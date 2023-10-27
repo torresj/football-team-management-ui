@@ -13,6 +13,19 @@
   justify-content: center;
 }
 
-.list-rules{
+.list-rules {
   font-size: 1.2em;
+}
+
+.note {
+  margin-top: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.2em;
+  text-align: center;
 }
