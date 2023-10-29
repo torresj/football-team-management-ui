@@ -48,6 +48,7 @@ import {InjuredMemberComponent} from './components/dialogs/injured-member/injure
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatBadgeModule} from "@angular/material/badge";
 import { RulesComponent } from './components/rules/rules.component';
+import { BalanceComponent } from './components/balance/balance.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { RulesComponent } from './components/rules/rules.component';
     DeleteMemberComponent,
     EditMemberComponent,
     InjuredMemberComponent,
-    RulesComponent
+    RulesComponent,
+    BalanceComponent
   ],
     imports: [
         BrowserModule,

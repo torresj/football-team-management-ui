@@ -22,7 +22,7 @@ export class MemberService {
   }
 
   updatePassword$(newPassword: string): Observable<Member> {
-    return this.http.patch<Member>(apiConstants.apiBaseUrl + '/v1/members/me',
+    return this.http.patch<Member>(apiConstants.apiBaseUrl + '/v1/members/me/password',
       {'newPassword': newPassword});
   }
 
