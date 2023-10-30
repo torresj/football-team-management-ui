@@ -49,6 +49,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatBadgeModule} from "@angular/material/badge";
 import { RulesComponent } from './components/rules/rules.component';
 import { BalanceComponent } from './components/balance/balance.component';
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 @NgModule({
   declarations: [
@@ -102,7 +103,8 @@ import { BalanceComponent } from './components/balance/balance.component';
         MatTableModule,
         MatSnackBarModule,
         MatCheckboxModule,
-        MatBadgeModule
+        MatBadgeModule,
+        MatPaginatorModule
     ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
