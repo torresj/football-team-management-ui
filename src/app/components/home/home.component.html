@@ -1,8 +1,8 @@
 <section class="home-section">
-  <section *ngIf="(isLoading$ | async)">
+  <section *ngIf="(isLoading$ | async) || (member$ | async) == undefined">
     <mat-spinner></mat-spinner>
   </section>
-  <section *ngIf="!(isLoading$ | async) && (member$ | async) != null">
+  <section *ngIf="!(isLoading$ | async) && ((member$ | async) != null && (member$ | async)!= undefined)">
     <article *ngIf="(member$ | async) as member" class="info-section">
       <h1>Bienvenido {{member.name}}</h1>
       <article *ngIf="(nextMatch$ | async)">

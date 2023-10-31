@@ -3,6 +3,7 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {apiConstants} from "../constants/api.constants";
 import Movement from "../entities/Movement";
 import {PageableResponse} from "../entities/PageableResponse";
+import {debounceTime, distinctUntilChanged} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -23,15 +24,15 @@ export class MovementService {
 
 
     if (memberId) {
-      params.set("memberId", memberId);
+      params = params.append("memberId", memberId);
     }
 
     if (filter) {
-      params.set("filter", filter);
+      params = params.append("filter", filter);
     }
 
     return this.http.get<PageableResponse<Movement>>(apiConstants.apiBaseUrl + "/v1/movements", {
       params: params
-    });
+    })
   }
 }
