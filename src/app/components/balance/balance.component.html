@@ -21,6 +21,11 @@
         <mat-icon matPrefix>search</mat-icon>
         <input matInput type="search" placeholder="Buscar por texto" [(ngModel)]="filter" (input)="filterChangeEvent()">
       </mat-form-field>
+      <section class="members-buttons-section" *ngIf="isAdmin | async">
+        <button mat-fab color="accent" (click)="addMovement()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </section>
     </section>
     <table mat-table [dataSource]="dataSource">
       <ng-container matColumnDef="memberName">

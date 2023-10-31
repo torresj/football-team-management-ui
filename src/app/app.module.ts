@@ -50,6 +50,7 @@ import {MatBadgeModule} from "@angular/material/badge";
 import { RulesComponent } from './components/rules/rules.component';
 import { BalanceComponent } from './components/balance/balance.component';
 import {MatPaginatorModule} from "@angular/material/paginator";
+import { CreateMovementComponent } from './components/dialogs/create-movement/create-movement.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     EditMemberComponent,
     InjuredMemberComponent,
     RulesComponent,
-    BalanceComponent
+    BalanceComponent,
+    CreateMovementComponent
   ],
     imports: [
         BrowserModule,

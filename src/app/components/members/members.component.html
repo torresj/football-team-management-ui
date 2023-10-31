@@ -13,7 +13,9 @@
         <div class="legend"></div>
       </section>
       <section class="members-buttons-section" *ngIf="isAdmin | async">
-        <button mat-flat-button color="accent" (click)="createMember()">Añadir miembro</button>
+        <button mat-fab color="accent" (click)="createMember()">
+          <mat-icon>add</mat-icon>
+        </button>
       </section>
     </section>
     <table mat-table [dataSource]="dataSource">

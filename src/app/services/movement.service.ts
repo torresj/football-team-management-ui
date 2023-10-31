@@ -3,7 +3,7 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {apiConstants} from "../constants/api.constants";
 import Movement from "../entities/Movement";
 import {PageableResponse} from "../entities/PageableResponse";
-import {debounceTime, distinctUntilChanged} from "rxjs";
+import {MovementType} from "../entities/MovementType";
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,7 @@ export class MovementService {
     return this.http.get<Movement[]>(apiConstants.apiBaseUrl + `/v1/members/${memberId}/movements`);
   }
 
-  getAllBalancesByFilters(nPage: number, nElements: number, memberId?: number, filter?: string) {
+  getAllBalancesByFilters$(nPage: number, nElements: number, memberId?: number, filter?: string) {
     let params = new HttpParams()
       .set("page", nPage.toString())
       .set("elements", nElements.toString());
@@ -34,5 +34,14 @@ export class MovementService {
     return this.http.get<PageableResponse<Movement>>(apiConstants.apiBaseUrl + "/v1/movements", {
       params: params
     })
+  }
+
+  create$(type: MovementType, memberId: number, amount: number, description: string){
+    return this.http.post(apiConstants.apiBaseUrl + '/v1/movements', {
+      type: type,
+      memberId: memberId,
+      amount: amount,
+      description: description
+    });
   }
 }
