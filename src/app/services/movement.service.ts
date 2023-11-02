@@ -36,12 +36,16 @@ export class MovementService {
     })
   }
 
-  create$(type: MovementType, memberId: number, amount: number, description: string){
+  create$(type: MovementType, memberId: number, amount: number, description: string) {
     return this.http.post(apiConstants.apiBaseUrl + '/v1/movements', {
       type: type,
       memberId: memberId,
       amount: amount,
       description: description
     });
+  }
+
+  delete$(movementId: number) {
+    return this.http.delete(apiConstants.apiBaseUrl + `/v1/movements/${movementId}`);
   }
 }

@@ -1,0 +1,15 @@
+<section class="delete-movement-section">
+  <h1 mat-dialog-title>Borrar movimiento</h1>
+  <div mat-dialog-content>
+    ¿Quieres borrar el siguiente movimiento del balance de {{data.memberName}}?
+    <mat-list role="list">
+      <mat-list-item role="listitem">Cantidad: {{data.amount}}€</mat-list-item>
+      <mat-list-item role="listitem">Descripción: {{data.description}}</mat-list-item>
+      <mat-list-item role="listitem">Fecha: {{data.createdOn | date: 'dd/MM/yy'}}</mat-list-item>
+    </mat-list>
+  </div>
+  <div class="dialog-action-buttons" mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button mat-button (click)="deleteMovement()">Borrar</button>
+  </div>
+</section>

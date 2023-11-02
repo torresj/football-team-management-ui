@@ -12,6 +12,7 @@ import {AuthService} from "../../services/auth.service";
 import {Role} from "../../entities/Role";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {CreateMovementComponent} from "../dialogs/create-movement/create-movement.component";
+import {DeleteMovementComponent} from "../dialogs/delete-movement/delete-movement.component";
 
 @Component({
   selector: 'app-balance',
@@ -23,6 +24,7 @@ export class BalanceComponent implements OnInit {
   dataSource = new MatTableDataSource<Movement>();
   columnsToDisplay = ['memberName', 'createdOn', 'type', 'description', 'amount'];
   columnsToDisplayInSmallScreens = ['memberName', 'description', 'amount'];
+  columnsToDisplayAdmin = ['memberName', 'createdOn', 'type', 'description', 'amount', 'actions'];
   columns = this.columnsToDisplay;
   isLoading$ = new BehaviorSubject(true);
   totalRecords = 0;
@@ -43,23 +45,31 @@ export class BalanceComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.responsive.observe(['(min-width: 600px)']).subscribe(
-      {
-        next: value => {
-          if (value.matches) {
-            this.columns = this.columnsToDisplay;
-          } else {
-            this.columns = this.columnsToDisplayInSmallScreens;
-          }
-        }
-      }
-    );
-
     this.authService.member$.subscribe({
       next: member => {
         if (member?.role == Role.ADMIN) {
           this.isAdmin.next(true);
         }
+
+        this.authService.member$.subscribe({
+          next: member => {
+            if (member?.role == Role.ADMIN) {
+              this.isAdmin.next(true);
+            }
+
+            this.responsive.observe(['(min-width: 700px)']).subscribe(
+              {
+                next: value => {
+                  if (value.matches) {
+                    this.columns = this.isAdmin.value ? this.columnsToDisplayAdmin : this.columnsToDisplay;
+                  } else {
+                    this.columns = this.columnsToDisplayInSmallScreens;
+                  }
+                }
+              }
+            );
+          }
+        });
       }
     });
 
@@ -88,6 +98,19 @@ export class BalanceComponent implements OnInit {
     dialogConfig.autoFocus = true;
 
     this.dialog.open(CreateMovementComponent, dialogConfig).afterClosed()
+      .subscribe({
+        next: () => this.getMovements(false)
+      });
+  }
+
+  deleteMovement(movement: Movement) {
+    const dialogConfig = new MatDialogConfig<Movement>();
+
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = movement;
+
+    this.dialog.open(DeleteMovementComponent, dialogConfig).afterClosed()
       .subscribe({
         next: () => this.getMovements(false)
       });

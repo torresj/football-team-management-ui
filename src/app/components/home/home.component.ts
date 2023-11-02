@@ -22,14 +22,19 @@ export class HomeComponent implements OnInit {
   isMemberConfirmed$ = new BehaviorSubject(false);
   isMemberAssistNextMatch$ = new BehaviorSubject(false);
   isLoading$ = new BehaviorSubject(true);
-  isToday$ = new BehaviorSubject(false);
 
   constructor(private authService: AuthService, private matchService: MatchService, private dialog: MatDialog) {
     this.member$ = this.authService.member$;
   }
 
   ngOnInit(): void {
-    this.getNextMatch();
+    this.authService.member$.subscribe({
+      next: member => {
+        if (member) {
+          this.getNextMatch();
+        }
+      }
+    })
   }
 
   openDialog(attend: boolean) {
@@ -84,7 +89,7 @@ export class HomeComponent implements OnInit {
         this.isMemberAssistNextMatch$.next(this.isMemberAssistNextMatch());
         this.isLoading$.next(false);
       },
-      error: err => {
+      error: () => {
         this.nextMatch$.next(null);
         this.isLoading$.next(false);
       }
