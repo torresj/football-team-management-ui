@@ -4,6 +4,7 @@ import {apiConstants} from "../constants/api.constants";
 import Movement from "../entities/Movement";
 import {PageableResponse} from "../entities/PageableResponse";
 import {MovementType} from "../entities/MovementType";
+import TotalBalance from "../entities/TotalBalance";
 
 @Injectable({
   providedIn: 'root'
@@ -47,5 +48,9 @@ export class MovementService {
 
   delete$(movementId: number) {
     return this.http.delete(apiConstants.apiBaseUrl + `/v1/movements/${movementId}`);
+  }
+
+  getTotalBalance$(){
+    return this.http.get<TotalBalance>(apiConstants.apiBaseUrl + '/v1/movements/balance');
   }
 }

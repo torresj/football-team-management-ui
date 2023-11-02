@@ -1,16 +1,16 @@
-.my-balance-section{
+.total-balance-section {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 40px;
 }
 
-.movement-table-card{
+.balance-table-card {
   padding: 15px;
   margin: 20px;
 }
 
-.movement-title-section{
+.balance-title-section {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -21,10 +21,10 @@ tr.mat-mdc-footer-row td {
   font-weight: bolder;
 }
 
-td.mat-mdc-footer-cell{
+td.mat-mdc-footer-cell {
   border-top: 2px solid black;
 }
 
-.total{
+.total-table {
   border-top: 2px solid black;
 }

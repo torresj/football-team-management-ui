@@ -52,6 +52,7 @@ import { BalanceComponent } from './components/balance/balance.component';
 import {MatPaginatorModule} from "@angular/material/paginator";
 import { CreateMovementComponent } from './components/dialogs/create-movement/create-movement.component';
 import { DeleteMovementComponent } from './components/dialogs/delete-movement/delete-movement.component';
+import { TotalBalanceComponent } from './components/total-balance/total-balance.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,8 @@ import { DeleteMovementComponent } from './components/dialogs/delete-movement/de
     RulesComponent,
     BalanceComponent,
     CreateMovementComponent,
-    DeleteMovementComponent
+    DeleteMovementComponent,
+    TotalBalanceComponent
   ],
     imports: [
         BrowserModule,

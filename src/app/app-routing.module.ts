@@ -10,6 +10,7 @@ import {MatchesComponent} from "./components/matches/matches.component";
 import {MembersComponent} from "./components/members/members.component";
 import {RulesComponent} from "./components/rules/rules.component";
 import {BalanceComponent} from "./components/balance/balance.component";
+import {TotalBalanceComponent} from "./components/total-balance/total-balance.component";
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -20,7 +21,8 @@ const appRoutes: Routes = [
   {path: 'my-balance', canActivate: [authGuard], component: MyBalanceComponent},
   {path: 'change-password', canActivate: [authGuard], component: ChangePasswordComponent},
   {path: 'rules', canActivate: [authGuard], component: RulesComponent},
-  {path: 'balance', canActivate: [authGuard], component: BalanceComponent}
+  {path: 'balance', canActivate: [authGuard], component: BalanceComponent},
+  {path: 'total-balance', canActivate: [authGuard], component: TotalBalanceComponent}
 ];
 
 @NgModule({

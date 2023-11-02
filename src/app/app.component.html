@@ -12,13 +12,21 @@
         <mat-icon>groups</mat-icon>
         <span>Miembros</span>
       </button>
-      <button mat-menu-item [routerLink]="'/balance'">
+      <button mat-menu-item [matMenuTriggerFor]="balanceMenu">
         <mat-icon>account_balance</mat-icon>
         <span>Balance</span>
       </button>
       <button mat-menu-item  [routerLink]="'/rules'">
         <mat-icon>gavel</mat-icon>
         <span>Normas</span>
+      </button>
+    </mat-menu>
+    <mat-menu #balanceMenu="matMenu">
+      <button mat-menu-item [routerLink]="'/balance'">
+        Movimientos
+      </button>
+      <button mat-menu-item [routerLink]="'/total-balance'">
+        Estado de cuentas
       </button>
     </mat-menu>
     <mat-menu #matchesMenu="matMenu">
