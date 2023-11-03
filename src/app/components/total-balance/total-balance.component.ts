@@ -20,8 +20,9 @@ export class TotalBalanceComponent implements OnInit {
   dataSource: TableData[] = [];
   totalDataSource: TableData[] = [];
   total = 0;
-  lastYearBalance = 998;
+  lastYearBalance = 938;
   fieldAnnualPay = 1500;
+  domainAnnualPay = 20;
 
   constructor(private movementService: MovementService) {
   }
@@ -34,7 +35,9 @@ export class TotalBalanceComponent implements OnInit {
           {name: "Cuotas y multas totales", amount: balance.totalExpenses * -1},
           {name: "Cuotas y multas pagadas", amount: balance.totalIncomes},
           {name: "Cuotas y multas sin pagar", amount: (balance.totalIncomes + balance.totalExpenses) * -1},
-          {name: "Pago del campo", amount: this.fieldAnnualPay}
+          {name: "Pago del campo", amount: this.fieldAnnualPay},
+          {name: "Pago del dominio wev pkmh.es", amount: this.domainAnnualPay},
+          {name: "Compra de nuevo balón", amount: 126}
         ]
         this.totalDataSource = [{
           name: "Ingresos totales (temporada anterior + cuotas y multas pagadas)",
@@ -42,7 +45,7 @@ export class TotalBalanceComponent implements OnInit {
         },
           {
             name: "Gastos totales (pago del campo mas otros gastos)",
-            amount: this.fieldAnnualPay
+            amount: this.fieldAnnualPay + this.domainAnnualPay + 126
           }
         ];
         this.total = -this.fieldAnnualPay + this.lastYearBalance + balance.totalIncomes;
