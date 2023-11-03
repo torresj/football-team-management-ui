@@ -44,7 +44,7 @@ export class TotalBalanceComponent implements OnInit {
           amount: this.lastYearBalance + balance.totalIncomes
         },
           {
-            name: "Gastos totales (pago del campo mas otros gastos)",
+            name: "Gastos totales (pago del campo + otros gastos)",
             amount: this.fieldAnnualPay + this.domainAnnualPay + 126
           }
         ];
