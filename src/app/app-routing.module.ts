@@ -21,7 +21,7 @@ const appRoutes: Routes = [
   {path: 'my-balance', canActivate: [authGuard], component: MyBalanceComponent},
   {path: 'change-password', canActivate: [authGuard], component: ChangePasswordComponent},
   {path: 'rules', canActivate: [authGuard], component: RulesComponent},
-  {path: 'balance', canActivate: [authGuard], component: BalanceComponent},
+  {path: 'movements', canActivate: [authGuard], component: BalanceComponent},
   {path: 'total-balance', canActivate: [authGuard], component: TotalBalanceComponent}
 ];
 
