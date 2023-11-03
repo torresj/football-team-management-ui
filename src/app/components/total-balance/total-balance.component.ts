@@ -36,7 +36,7 @@ export class TotalBalanceComponent implements OnInit {
           {name: "Cuotas y multas pagadas", amount: balance.totalIncomes},
           {name: "Cuotas y multas sin pagar", amount: (balance.totalIncomes + balance.totalExpenses) * -1},
           {name: "Pago del campo", amount: this.fieldAnnualPay},
-          {name: "Pago del dominio wev pkmh.es", amount: this.domainAnnualPay},
+          {name: "Pago del dominio web pkmh.es", amount: this.domainAnnualPay},
           {name: "Compra de nuevo balón", amount: 126}
         ]
         this.totalDataSource = [{
