@@ -1,42 +1,49 @@
-.home-section{
+.home-section {
   display: flex;
   flex-direction: row;
   justify-content: center;
   margin-top: 100px;
 }
 
-.info-section{
+.info-section {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
   padding: 0 30px;
 }
 
-.info-content{
+.info-content {
   text-align: center;
 }
 
-.info-buttons{
+.info-buttons {
   margin: 15px;
 }
 
-.next-match-button-section{
+.next-match-button-section {
   margin-top: 30px;
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
 
-.confirm-button-section{
+.confirm-button-section {
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
 
-.today-match{
+.today-match {
   display: flex;
   flex-direction: row;
   justify-content: center;
   color: darkred;
   font-size: 1.2em;
+  text-decoration: underline;
+}
+
+.team-article {
+  margin-top: 20px;
+  justify-content: center;
 }

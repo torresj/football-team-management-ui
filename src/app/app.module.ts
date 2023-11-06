@@ -53,6 +53,7 @@ import {MatPaginatorModule} from "@angular/material/paginator";
 import { CreateMovementComponent } from './components/dialogs/create-movement/create-movement.component';
 import { DeleteMovementComponent } from './components/dialogs/delete-movement/delete-movement.component';
 import { TotalBalanceComponent } from './components/total-balance/total-balance.component';
+import {NgOptimizedImage} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -110,7 +111,8 @@ import { TotalBalanceComponent } from './components/total-balance/total-balance.
         MatSnackBarModule,
         MatCheckboxModule,
         MatBadgeModule,
-        MatPaginatorModule
+        MatPaginatorModule,
+        NgOptimizedImage
     ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]

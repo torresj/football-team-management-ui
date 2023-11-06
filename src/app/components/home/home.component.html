@@ -17,6 +17,14 @@
         <p *ngIf="(Date() | date:'dd/MM/yy') == ((nextMatch$ | async)?.matchDay | date:'dd/MM/yy')" class="today-match">
           El partido es hoy por lo que ya no se permiten cambios
         </p>
+        <article *ngIf="isMemberInTeamA$ | async" class="team-article">
+          <p>Los equipos ya están hechos. Tu color es el blanco</p>
+          <img src="assets/white-tshirt.svg" height="200" width="200" alt="">
+        </article>
+        <article *ngIf="isMemberInTeamB$ | async" class="team-article">
+          <p>Los equipos ya están hechos. Tu color es el rojo</p>
+          <img src="assets/red-tshirt.svg" height="200" width="200" alt="">
+        </article>
         <article *ngIf="(Date() | date:'dd/MM/yy') != ((nextMatch$ | async)?.matchDay | date:'dd/MM/yy')"
                  class="confirm-button-section">
           <button class="info-buttons" mat-raised-button color="primary" (click)="openDialog(true)">Alta</button>

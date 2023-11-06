@@ -21,6 +21,8 @@ export class HomeComponent implements OnInit {
   member$: BehaviorSubject<Member | null>;
   isMemberConfirmed$ = new BehaviorSubject(false);
   isMemberAssistNextMatch$ = new BehaviorSubject(false);
+  isMemberInTeamA$ = new BehaviorSubject(false);
+  isMemberInTeamB$ = new BehaviorSubject(false);
   isLoading$ = new BehaviorSubject(true);
 
   constructor(private authService: AuthService, private matchService: MatchService, private dialog: MatDialog) {
@@ -80,6 +82,16 @@ export class HomeComponent implements OnInit {
     return this.nextMatch$.value?.confirmedPlayers.map(player => player.id).includes(id) ?? false;
   }
 
+  private setMemberInTeam() {
+    const id = this.member$.value!.id;
+    this.isMemberInTeamA$.next(
+      this.nextMatch$.value?.teamAPlayers.map(player => player.id).includes(id) ?? false
+    );
+    this.isMemberInTeamB$.next(
+      this.nextMatch$.value?.teamBPlayers.map(player => player.id).includes(id) ?? false
+    );
+  }
+
   private getNextMatch() {
     this.isLoading$.next(true);
     this.matchService.getNextMatch$().subscribe({
@@ -87,6 +99,7 @@ export class HomeComponent implements OnInit {
         this.nextMatch$.next(match);
         this.isMemberConfirmed$.next(this.isMemberConfirmed());
         this.isMemberAssistNextMatch$.next(this.isMemberAssistNextMatch());
+        this.setMemberInTeam();
         this.isLoading$.next(false);
       },
       error: () => {
