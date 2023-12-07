@@ -1,35 +1,79 @@
 <section class="next-match-section">
-  <article class="next-match-spinner" *ngIf="(isLoading$ | async)">
+  <article class="next-match-spinner" *ngIf="isLoading$ | async">
     <mat-spinner></mat-spinner>
   </article>
   <article class="next-match-info" *ngIf="!(isLoading$ | async)">
     <article *ngIf="!(nextMatch$ | async)" class="no-next-match-section">
       <p>El siguiente partido aun no ha sido creado</p>
     </article>
-    <article class="next-match-content" *ngIf="(nextMatch$ | async) as match">
-      <h1 class="next-match-title">Partido del lunes {{match.matchDay | date:'dd/MM/yy'}}</h1>
-      <article class="next-match-cards">
-        <app-player-list title="Jugadores sin confirmar" [players]="match.unConfirmedPlayers"/>
-        <app-player-list title="Altas" [players]="match.confirmedPlayers"/>
-        <app-player-list title="Bajas" [players]="match.notAvailablePlayers"/>
-      </article>
-      <article class="divider">
-        <mat-divider></mat-divider>
-      </article>
-      <article class="next-match-cards">
-        <app-team-list [players]="match.teamAPlayers" [guests]="match.teamAGuests" title="Equipo Blanco"
-                       [captain]="match.captainTeamA"
-                       (removePlayerEvent)="removePlayerFromTeamA($event)"
-                       (removeGuestEvent)="removeGuestFromTeamA($event)"
-                       (addPlayerEvent)="addPlayerToTeamA()"
-                       (addCaptainEvent)="addCaptainToTeamA()"/>
-        <app-team-list [players]="match.teamBPlayers" [guests]="match.teamBGuests" title="Equipo Rojo"
-                       [captain]="match.captainTeamB"
-                       (removePlayerEvent)="removePlayerFromTeamB($event)"
-                       (removeGuestEvent)="removeGuestFromTeamB($event)"
-                       (addPlayerEvent)="addPlayerToTeamB()"
-                       (addCaptainEvent)="addCaptainToTeamB()"/>
-      </article>
+    <article *ngIf="nextMatch$ | async as match">
+      <section
+        class="next-match-content"
+        *ngIf="
+          (Date() | date : 'dd/MM/yy') == (match?.matchDay | date : 'dd/MM/yy')
+        "
+      >
+        <h1 class="next-match-title">
+          Partido del lunes {{ match.matchDay | date : "dd/MM/yy" }}
+        </h1>
+        <article class="next-match-cards">
+          <app-team-list
+            [players]="match.teamAPlayers"
+            [guests]="match.teamAGuests"
+            title="Equipo Blanco"
+            [captain]="match.captainTeamA"
+            (removePlayerEvent)="removePlayerFromTeamA($event)"
+            (removeGuestEvent)="removeGuestFromTeamA($event)"
+            (addPlayerEvent)="addPlayerToTeamA()"
+            (addCaptainEvent)="addCaptainToTeamA()"
+          />
+          <app-team-list
+            [players]="match.teamBPlayers"
+            [guests]="match.teamBGuests"
+            title="Equipo Rojo"
+            [captain]="match.captainTeamB"
+            (removePlayerEvent)="removePlayerFromTeamB($event)"
+            (removeGuestEvent)="removeGuestFromTeamB($event)"
+            (addPlayerEvent)="addPlayerToTeamB()"
+            (addCaptainEvent)="addCaptainToTeamB()"
+          />
+        </article>
+        <article class="divider">
+          <mat-divider></mat-divider>
+        </article>
+        <article class="next-match-cards">
+          <app-player-list
+            title="Jugadores sin confirmar"
+            [players]="match.unConfirmedPlayers"
+          />
+          <app-player-list title="Altas" [players]="match.confirmedPlayers" />
+          <app-player-list
+            title="Bajas"
+            [players]="match.notAvailablePlayers"
+          />
+        </article>
+      </section>
+      <section
+        class="next-match-content"
+        *ngIf="
+          (Date() | date : 'dd/MM/yy') != (match?.matchDay | date : 'dd/MM/yy')
+        "
+      >
+        <h1 class="next-match-title">
+          Partido del lunes {{ match.matchDay | date : "dd/MM/yy" }}
+        </h1>
+        <article class="next-match-cards">
+          <app-player-list
+            title="Jugadores sin confirmar"
+            [players]="match.unConfirmedPlayers"
+          />
+          <app-player-list title="Altas" [players]="match.confirmedPlayers" />
+          <app-player-list
+            title="Bajas"
+            [players]="match.notAvailablePlayers"
+          />
+        </article>
+      </section>
     </article>
   </article>
 </section>
