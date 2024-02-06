@@ -49,6 +49,10 @@ export class TotalBalanceComponent implements OnInit {
             name: 'Equipación de repuesto + dos juegos de guantes',
             amount: -94,
           },
+          {
+            name: '29 pantalones blancos a 5€ cada uno',
+            amount: -145,
+          },
         ];
         this.totalDataSource = [
           {
@@ -58,13 +62,14 @@ export class TotalBalanceComponent implements OnInit {
           {
             name: 'Gastos totales (pago del campo + otros gastos)',
             amount:
-              (this.fieldAnnualPay + this.domainAnnualPay + 126 + 94) * -1,
+              (this.fieldAnnualPay + this.domainAnnualPay + 126 + 94 + 145) *
+              -1,
           },
         ];
         this.total =
           this.lastYearBalance +
           balance.totalIncomes -
-          (this.fieldAnnualPay + this.domainAnnualPay + 126 + 94);
+          (this.fieldAnnualPay + this.domainAnnualPay + 126 + 94 + 145);
         this.isLoading$.next(false);
       },
       error: (err) => {
