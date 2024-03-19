@@ -1,0 +1,22 @@
+.dialog-action-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-right: 10px;
+}
+
+.balance-alert-section {
+  padding: 15px 5px;
+}
+
+.balance {
+  margin: 30px 0;
+  text-align: center;
+  color: red;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.notice {
+  text-decoration: underline;
+}
