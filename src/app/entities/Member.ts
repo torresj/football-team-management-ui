@@ -1,8 +1,9 @@
-import {Role} from "./Role";
+import { Role } from './Role';
 
-export default interface Member{
+export default interface Member {
   id: number;
   name: string;
+  alias?: string;
   surname: string;
   phone?: string;
   nCaptaincies: number;

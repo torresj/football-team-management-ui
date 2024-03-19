@@ -1,20 +1,18 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import Member from "../entities/Member";
-import {apiConstants} from "../constants/api.constants";
-import {Observable} from "rxjs";
-import {Role} from "../entities/Role";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import Member from '../entities/Member';
+import { apiConstants } from '../constants/api.constants';
+import { Observable } from 'rxjs';
+import { Role } from '../entities/Role';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MemberService {
-
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
   getMe$(): Observable<Member> {
-    return this.http.get<Member>(apiConstants.apiBaseUrl + '/v1/members/me')
+    return this.http.get<Member>(apiConstants.apiBaseUrl + '/v1/members/me');
   }
 
   getAll$() {
@@ -22,36 +20,59 @@ export class MemberService {
   }
 
   updatePassword$(newPassword: string): Observable<Member> {
-    return this.http.patch<Member>(apiConstants.apiBaseUrl + '/v1/members/me/password',
-      {'newPassword': newPassword});
+    return this.http.patch<Member>(
+      apiConstants.apiBaseUrl + '/v1/members/me/password',
+      { newPassword: newPassword }
+    );
   }
 
-  create$(name: string, surname: string, phone: string, role: Role) {
+  create$(
+    name: string,
+    alias: string,
+    surname: string,
+    phone: string,
+    role: Role
+  ) {
     return this.http.post(apiConstants.apiBaseUrl + '/v1/members', {
       name: name,
       surname: surname,
+      alias: alias,
       phone: phone,
-      role: role
+      role: role,
     });
   }
 
-  update$(memberId: number, name: string, surname: string, phone: string, role: Role, nCapitancies: number) {
+  update$(
+    memberId: number,
+    name: string,
+    alias: string,
+    surname: string,
+    phone: string,
+    role: Role,
+    nCapitancies: number
+  ) {
     return this.http.put(apiConstants.apiBaseUrl + `/v1/members/${memberId}`, {
       name: name,
+      alias: alias,
       surname: surname,
       phone: phone,
       role: role,
-      nCaptaincies: nCapitancies
+      nCaptaincies: nCapitancies,
     });
   }
 
   updateInjuredMember$(memberId: number, injured: boolean) {
-    return this.http.patch(apiConstants.apiBaseUrl + `/v1/members/${memberId}/injured`, {
-      injured: injured
-    });
+    return this.http.patch(
+      apiConstants.apiBaseUrl + `/v1/members/${memberId}/injured`,
+      {
+        injured: injured,
+      }
+    );
   }
 
   delete$(memberId: number) {
-    return this.http.delete(apiConstants.apiBaseUrl + `/v1/members/${memberId}`);
+    return this.http.delete(
+      apiConstants.apiBaseUrl + `/v1/members/${memberId}`
+    );
   }
 }
