@@ -1,0 +1,28 @@
+<section class="update-alias-section">
+  <h2 class="update-alias-title">Actualiza tu alias</h2>
+  <form class="update-alias-form" [formGroup]="form" (ngSubmit)="submit()">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Alias</mat-label>
+      <input
+        matInput
+        placeholder="Introduce tu alias"
+        name="alias"
+        formControlName="alias"
+        type="text"
+      />
+    </mat-form-field>
+    <button
+      mat-raised-button
+      class="submit-button"
+      color="primary"
+      type="submit"
+    >
+      <mat-spinner
+        color="warn"
+        *ngIf="isLoading$ | async"
+        class="update-alias-spinner"
+      ></mat-spinner>
+      <span *ngIf="!(isLoading$ | async)">Actualizar</span>
+    </button>
+  </form>
+</section>

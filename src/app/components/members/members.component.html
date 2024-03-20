@@ -2,10 +2,19 @@
   <section *ngIf="isLoading$ | async">
     <mat-spinner></mat-spinner>
   </section>
-  <section *ngIf="!(isLoading$ | async)" class="mat-elevation-z8 members-table-section">
+  <section
+    *ngIf="!(isLoading$ | async)"
+    class="mat-elevation-z8 members-table-section"
+  >
     <section class="members-title-section">
-      <h2 [matBadge]="dataSource.data.length" matBadgePosition="after" matBadgeColor="primary"
-          matBadgeOverlap="false">Lista de miembros</h2>
+      <h2
+        [matBadge]="dataSource.data.length"
+        matBadgePosition="after"
+        matBadgeColor="primary"
+        matBadgeOverlap="false"
+      >
+        Lista de miembros
+      </h2>
     </section>
     <section class="members-header">
       <section class="injured-header">
@@ -20,28 +29,34 @@
     </section>
     <table mat-table [dataSource]="dataSource">
       <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Nombre</th>
-        <td mat-cell *matCellDef="let member"> {{member.name}} </td>
+        <th mat-header-cell *matHeaderCellDef>Nombre</th>
+        <td mat-cell *matCellDef="let member">{{ member.name }}</td>
       </ng-container>
       <ng-container matColumnDef="surname">
-        <th mat-header-cell *matHeaderCellDef> Apellido</th>
-        <td mat-cell *matCellDef="let member"> {{member.surname}} </td>
+        <th mat-header-cell *matHeaderCellDef>Apellido</th>
+        <td mat-cell *matCellDef="let member">{{ member.surname }}</td>
+      </ng-container>
+      <ng-container matColumnDef="alias">
+        <th mat-header-cell *matHeaderCellDef>Alias</th>
+        <td mat-cell *matCellDef="let member">{{ member.alias }}</td>
       </ng-container>
       <ng-container matColumnDef="phone">
-        <th mat-header-cell *matHeaderCellDef> Telefono</th>
-        <td mat-cell *matCellDef="let member"> {{member?.phone}} </td>
+        <th mat-header-cell *matHeaderCellDef>Telefono</th>
+        <td mat-cell *matCellDef="let member">{{ member?.phone }}</td>
       </ng-container>
       <ng-container matColumnDef="nCaptaincies">
-        <th mat-header-cell *matHeaderCellDef> Capitanias</th>
-        <td mat-cell *matCellDef="let member"> {{member.nCaptaincies}} </td>
+        <th mat-header-cell *matHeaderCellDef>Capitanias</th>
+        <td mat-cell *matCellDef="let member">{{ member.nCaptaincies }}</td>
       </ng-container>
       <ng-container matColumnDef="role">
-        <th mat-header-cell *matHeaderCellDef> Role</th>
-        <td mat-cell *matCellDef="let member"> {{member.role == Role.ADMIN ? 'Admin' : 'Usuario'}} </td>
+        <th mat-header-cell *matHeaderCellDef>Role</th>
+        <td mat-cell *matCellDef="let member">
+          {{ member.role == Role.ADMIN ? "Admin" : "Usuario" }}
+        </td>
       </ng-container>
       <ng-container matColumnDef="balance">
-        <th mat-header-cell *matHeaderCellDef> Balance</th>
-        <td mat-cell *matCellDef="let member"> {{member.balance}}€</td>
+        <th mat-header-cell *matHeaderCellDef>Balance</th>
+        <td mat-cell *matCellDef="let member">{{ member.balance }}€</td>
       </ng-container>
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef></th>
@@ -66,7 +81,11 @@
         </td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="columns"></tr>
-      <tr mat-row *matRowDef="let member; columns: columns;" [class]="member.injured? 'injured':''"></tr>
+      <tr
+        mat-row
+        *matRowDef="let member; columns: columns"
+        [class]="member.injured ? 'injured' : ''"
+      ></tr>
     </table>
   </section>
 </section>

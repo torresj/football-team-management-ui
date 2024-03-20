@@ -4,18 +4,29 @@
     <form class="create-member-form" [formGroup]="form" (ngSubmit)="submit()">
       <mat-form-field>
         <mat-label>Nombre</mat-label>
-        <input matInput formControlName="name">
-        <mat-error *ngIf="submitted && form.get('name')?.errors?.['required']">Campo obligatorio</mat-error>
+        <input matInput formControlName="name" />
+        <mat-error *ngIf="submitted && form.get('name')?.errors?.['required']"
+          >Campo obligatorio</mat-error
+        >
       </mat-form-field>
       <mat-form-field>
         <mat-label>Apellido</mat-label>
-        <input matInput formControlName="surname">
-        <mat-error *ngIf="submitted && form.get('surname')?.errors?.['required']">Campo obligatorio</mat-error>
+        <input matInput formControlName="surname" />
+        <mat-error
+          *ngIf="submitted && form.get('surname')?.errors?.['required']"
+          >Campo obligatorio</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Alias</mat-label>
+        <input matInput formControlName="alias" />
       </mat-form-field>
       <mat-form-field>
         <mat-label>Teléfono</mat-label>
-        <input matInput formControlName="phone">
-        <mat-error *ngIf="submitted && form.get('phone')?.errors?.['required']">Campo obligatorio</mat-error>
+        <input matInput formControlName="phone" />
+        <mat-error *ngIf="submitted && form.get('phone')?.errors?.['required']"
+          >Campo obligatorio</mat-error
+        >
       </mat-form-field>
       <mat-form-field>
         <mat-label>Rol</mat-label>

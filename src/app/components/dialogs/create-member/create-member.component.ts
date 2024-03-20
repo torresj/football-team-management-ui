@@ -37,6 +37,7 @@ export class CreateMemberComponent implements OnInit {
     this.form = this.formBuilder.group({
       name: ['', [Validators.required]],
       surname: ['', [Validators.required]],
+      alias: [''],
       phone: ['', [Validators.required]],
       role: [Role.USER, [Validators.required]],
     });
@@ -51,7 +52,7 @@ export class CreateMemberComponent implements OnInit {
     this.memberService
       .create$(
         this.form.get('name')?.value,
-        '',
+        this.form.get('alias')?.value,
         this.form.get('surname')?.value,
         this.form.get('phone')?.value,
         this.form.get('role')?.value

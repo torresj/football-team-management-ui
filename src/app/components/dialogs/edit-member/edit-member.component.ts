@@ -39,6 +39,7 @@ export class EditMemberComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       name: [this.data.name, [Validators.required]],
+      alias: [this.data.alias],
       surname: [this.data.surname, [Validators.required]],
       phone: [this.data.phone, [Validators.required]],
       role: [this.data.role, [Validators.required]],
@@ -56,7 +57,7 @@ export class EditMemberComponent implements OnInit {
       .update$(
         this.data.id,
         this.form.get('name')?.value,
-        '',
+        this.form.get('alias')?.value,
         this.form.get('surname')?.value,
         this.form.get('phone')?.value,
         this.form.get('role')?.value,

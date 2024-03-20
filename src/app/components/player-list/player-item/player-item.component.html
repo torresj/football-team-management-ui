@@ -1,6 +1,8 @@
 <section class="player-section">
   <div class="player-avatar">
-    {{player.name.split(" ")[0][0]}}{{player.name.split(" ")[1][0]}}
+    {{ player.name.split(" ")[0][0] }}{{ player.name.split(" ")[1][0] }}
   </div>
-  <span>{{player.name}}</span>
+  <span>{{
+    player.alias && player.alias != "" ? player.alias : player.name
+  }}</span>
 </section>

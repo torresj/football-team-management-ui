@@ -71,4 +71,10 @@ export class AuthService {
   isAdmin() {
     return this.member$.value?.role == Role.ADMIN;
   }
+
+  refresh$() {
+    return this.memberService
+      .getMe$()
+      .pipe(tap((member) => this.member$.next(member)));
+  }
 }

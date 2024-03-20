@@ -26,6 +26,13 @@ export class MemberService {
     );
   }
 
+  updateAlias$(alias: string): Observable<Member> {
+    return this.http.patch<Member>(
+      apiConstants.apiBaseUrl + '/v1/members/me/alias',
+      { alias: alias }
+    );
+  }
+
   create$(
     name: string,
     alias: string,

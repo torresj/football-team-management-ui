@@ -1,6 +1,10 @@
 <section class="layout">
   <mat-toolbar color="primary">
-    <button mat-icon-button [matMenuTriggerFor]="mainMenu" [disabled]="(member$ | async) === null">
+    <button
+      mat-icon-button
+      [matMenuTriggerFor]="mainMenu"
+      [disabled]="(member$ | async) === null"
+    >
       <mat-icon>menu</mat-icon>
     </button>
     <mat-menu #mainMenu="matMenu">
@@ -16,15 +20,13 @@
         <mat-icon>account_balance</mat-icon>
         <span>Balance</span>
       </button>
-      <button mat-menu-item  [routerLink]="'/rules'">
+      <button mat-menu-item [routerLink]="'/rules'">
         <mat-icon>gavel</mat-icon>
         <span>Normas</span>
       </button>
     </mat-menu>
     <mat-menu #balanceMenu="matMenu">
-      <button mat-menu-item [routerLink]="'/movements'">
-        Movimientos
-      </button>
+      <button mat-menu-item [routerLink]="'/movements'">Movimientos</button>
       <button mat-menu-item [routerLink]="'/total-balance'">
         Estado de cuentas
       </button>
@@ -39,8 +41,14 @@
     </mat-menu>
     <a class="team-name" [routerLink]="['/']">Peña Km/h</a>
     <span class="example-spacer"></span>
-    <h6 *ngIf="(member$ | async) as member" class="member-name">{{member.name}}</h6>
-    <button mat-icon-button [matMenuTriggerFor]="logMenu" [disabled]="(member$ | async) === null">
+    <h6 *ngIf="member$ | async as member" class="member-name">
+      {{ member.name }}
+    </h6>
+    <button
+      mat-icon-button
+      [matMenuTriggerFor]="logMenu"
+      [disabled]="(member$ | async) === null"
+    >
       <mat-icon>person</mat-icon>
     </button>
     <mat-menu #logMenu="matMenu">
@@ -52,6 +60,10 @@
         <mat-icon>password</mat-icon>
         <span>Cambiar contraseña</span>
       </button>
+      <button mat-menu-item [routerLink]="'/change-alias'">
+        <mat-icon>assignment_ind</mat-icon>
+        <span>Cambiar alias</span>
+      </button>
       <button mat-menu-item (click)="logout()">
         <mat-icon>logout</mat-icon>
         <span>Salir</span>
@@ -61,7 +73,6 @@
   <router-outlet class="layout-content"></router-outlet>
 </section>
 <footer class="footer">
-    <a href="mailto:jtbenavente@gmail.com">Jaime Torres</a>
-    <span>&copy;</span> 2023
+  <a href="mailto:jtbenavente@gmail.com">Jaime Torres</a>
+  <span>&copy;</span> 2023
 </footer>
-

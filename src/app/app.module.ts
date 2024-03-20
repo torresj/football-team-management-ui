@@ -55,6 +55,7 @@ import { DeleteMovementComponent } from './components/dialogs/delete-movement/de
 import { TotalBalanceComponent } from './components/total-balance/total-balance.component';
 import { NgOptimizedImage } from '@angular/common';
 import { BalanceAlertComponent } from './components/dialogs/balance-alert/balance-alert.component';
+import { ChangeAliasComponent } from './components/change-alias/change-alias.component';
 
 @NgModule({
   declarations: [
@@ -85,6 +86,7 @@ import { BalanceAlertComponent } from './components/dialogs/balance-alert/balanc
     DeleteMovementComponent,
     TotalBalanceComponent,
     BalanceAlertComponent,
+    ChangeAliasComponent,
   ],
   imports: [
     BrowserModule,

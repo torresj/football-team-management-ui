@@ -22,9 +22,9 @@ import {InjuredMemberComponent} from "../dialogs/injured-member/injured-member.c
 export class MembersComponent implements OnInit {
   isLoading$ = new BehaviorSubject(true);
   dataSource = new MatTableDataSource<Member>();
-  columnsToDisplay = ['name', 'surname', 'phone', 'nCaptaincies', 'role', 'balance'];
-  columnsToDisplayInSmallScreens = ['name', 'surname', 'balance'];
-  columnsToDisplayAdmin = ['name', 'surname', 'phone', 'nCaptaincies', 'role', 'balance', 'actions'];
+  columnsToDisplay = ['name', 'surname', 'alias','phone', 'nCaptaincies', 'role', 'balance'];
+  columnsToDisplayInSmallScreens = ['name', 'surname', 'alias', 'balance'];
+  columnsToDisplayAdmin = ['name', 'surname', 'alias', 'phone', 'nCaptaincies', 'role', 'balance', 'actions'];
   columnsToDisplayInSmallScreensAdmin = ['name', 'surname', 'actions'];
   columns = this.columnsToDisplay;
   isAdmin = new BehaviorSubject(false);
