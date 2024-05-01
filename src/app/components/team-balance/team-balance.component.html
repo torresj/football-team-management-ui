@@ -1,0 +1,56 @@
+<section class="balance-section">
+  <section *ngIf="isLoading$ | async">
+    <mat-spinner></mat-spinner>
+  </section>
+  <section
+    *ngIf="!(isLoading$ | async)"
+    class="mat-elevation-z8 movement-table-card"
+  >
+    <section class="movement-title-section">
+      <h2>Movimientos generales</h2>
+    </section>
+    <section class="filters">
+      <section class="members-buttons-section" *ngIf="isAdmin | async">
+        <button mat-fab color="accent" (click)="addMovement()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </section>
+    </section>
+    <table mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="createdOn">
+        <th mat-header-cell *matHeaderCellDef>Fecha</th>
+        <td mat-cell *matCellDef="let movement">
+          {{ movement.createdOn | date : "dd/MM/yy" }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef>Tipo</th>
+        <td mat-cell *matCellDef="let movement">
+          {{ movement.type == MovementType.EXPENSE ? "Gasto" : "Ingreso" }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef>Descripción</th>
+        <td mat-cell *matCellDef="let movement">{{ movement.description }}</td>
+      </ng-container>
+      <ng-container matColumnDef="amount">
+        <th mat-header-cell *matHeaderCellDef>Cantidad</th>
+        <td mat-cell *matCellDef="let movement">{{ movement.amount }}€</td>
+      </ng-container>
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let movement">
+          <button
+            mat-icon-button
+            color="warn"
+            (click)="deleteMovement(movement)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="columns"></tr>
+      <tr mat-row *matRowDef="let row; columns: columns"></tr>
+    </table>
+  </section>
+</section>

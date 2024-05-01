@@ -1,0 +1,22 @@
+.balance-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 30px;
+}
+
+.movement-title-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.movement-table-card {
+  padding: 20px;
+}
+
+.filters {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}

@@ -12,6 +12,7 @@ import { RulesComponent } from './components/rules/rules.component';
 import { BalanceComponent } from './components/balance/balance.component';
 import { TotalBalanceComponent } from './components/total-balance/total-balance.component';
 import { ChangeAliasComponent } from './components/change-alias/change-alias.component';
+import { TeamBalanceComponent } from './components/team-balance/team-balance.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -40,6 +41,11 @@ const appRoutes: Routes = [
   },
   { path: 'rules', canActivate: [authGuard], component: RulesComponent },
   { path: 'movements', canActivate: [authGuard], component: BalanceComponent },
+  {
+    path: 'team-movements',
+    canActivate: [authGuard],
+    component: TeamBalanceComponent,
+  },
   {
     path: 'total-balance',
     canActivate: [authGuard],

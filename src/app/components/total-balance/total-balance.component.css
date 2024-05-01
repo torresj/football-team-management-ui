@@ -28,3 +28,7 @@ td.mat-mdc-footer-cell {
 .total-table {
   border-top: 2px solid black;
 }
+
+.amount-cell {
+  text-align: right !important;
+}

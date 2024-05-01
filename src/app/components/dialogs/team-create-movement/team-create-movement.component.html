@@ -1,0 +1,33 @@
+<section class="create-movement-section">
+  <h1 mat-dialog-title>Añadir nuevo movimiento</h1>
+  <div mat-dialog-content>
+    <form class="create-movement-form" [formGroup]="form" (ngSubmit)="submit()">
+      <mat-form-field>
+        <mat-label>Tipo</mat-label>
+        <mat-select formControlName="type">
+          <mat-option value="EXPENSE">Gasto</mat-option>
+          <mat-option value="INCOME">Ingreso</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Cantidad</mat-label>
+        <input matInput type="number" formControlName="amount" />
+        <mat-error *ngIf="submitted && form.get('amount')?.errors?.['required']"
+          >Campo obligatorio</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Descripción</mat-label>
+        <textarea matInput formControlName="description"> </textarea>
+        <mat-error
+          *ngIf="submitted && form.get('description')?.errors?.['required']"
+          >Campo obligatorio</mat-error
+        >
+      </mat-form-field>
+      <div class="dialog-action-buttons" mat-dialog-actions>
+        <button mat-button mat-dialog-close>Cancelar</button>
+        <button mat-button type="submit">Añadir</button>
+      </div>
+    </form>
+  </div>
+</section>

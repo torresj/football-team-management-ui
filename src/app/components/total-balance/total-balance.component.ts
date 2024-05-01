@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, combineLatest } from 'rxjs';
 import { MovementService } from '../../services/movement.service';
 import { MovementType } from '../../entities/MovementType';
+import { TeamMovementService } from 'src/app/services/team-movement.service';
+import { MatTableDataSource } from '@angular/material/table';
+import Movement from 'src/app/entities/Movement';
 
 export interface TableData {
   name: string;
@@ -15,67 +18,50 @@ export interface TableData {
 })
 export class TotalBalanceComponent implements OnInit {
   isLoading$ = new BehaviorSubject(true);
-  columns: string[] = ['name', 'amount'];
-  dataSource: TableData[] = [];
+  columns: string[] = ['description', 'amount'];
+  totalColumns: string[] = ['name', 'amount'];
+  dataSource = new MatTableDataSource<Movement>();
   totalDataSource: TableData[] = [];
+  totalTeamDataSource: TableData[] = [];
   total = 0;
-  lastYearBalance = 938;
-  fieldAnnualPay = 1500;
-  domainAnnualPay = 20;
 
-  constructor(private movementService: MovementService) {}
+  constructor(
+    private movementService: MovementService,
+    private teamMovementService: TeamMovementService
+  ) {}
 
   ngOnInit(): void {
-    this.movementService.getTotalBalance$().subscribe({
-      next: (balance) => {
-        this.dataSource = [
-          { name: 'Balance 22/23', amount: this.lastYearBalance },
-          {
-            name: 'Cuotas y multas totales',
-            amount: balance.totalExpenses * -1,
-          },
-          { name: 'Cuotas y multas pagadas', amount: balance.totalIncomes },
-          {
-            name: 'Cuotas y multas sin pagar',
-            amount: balance.totalIncomes + balance.totalExpenses,
-          },
-          { name: 'Pago del campo', amount: this.fieldAnnualPay * -1 },
-          {
-            name: 'Pago del dominio web pkmh.es',
-            amount: this.domainAnnualPay * -1,
-          },
-          { name: 'Compra de nuevo balón', amount: -126 },
-          {
-            name: 'Equipación de repuesto + dos juegos de guantes',
-            amount: -94,
-          },
-          {
-            name: '29 pantalones blancos a 5€ cada uno',
-            amount: -145,
-          },
-        ];
-        this.totalDataSource = [
-          {
-            name: 'Ingresos totales (temporada anterior + cuotas y multas pagadas)',
-            amount: this.lastYearBalance + balance.totalIncomes,
-          },
-          {
-            name: 'Gastos totales (pago del campo + otros gastos)',
-            amount:
-              (this.fieldAnnualPay + this.domainAnnualPay + 126 + 94 + 145) *
-              -1,
-          },
-        ];
-        this.total =
-          this.lastYearBalance +
-          balance.totalIncomes -
-          (this.fieldAnnualPay + this.domainAnnualPay + 126 + 94 + 145);
-        this.isLoading$.next(false);
-      },
-      error: (err) => {
-        console.log(err);
-        this.isLoading$.next(false);
-      },
+    combineLatest([
+      this.movementService.getTotalBalance$(),
+      this.teamMovementService.getTotalBalance$(),
+      this.teamMovementService.getAllTeamMovements$(),
+    ]).subscribe((data) => {
+      this.dataSource.data = data[2];
+
+      this.totalDataSource = [
+        {
+          name: 'Cuotas y multas totales',
+          amount: data[0].totalExpenses * -1,
+        },
+        { name: 'Cuotas y multas pagadas', amount: data[0].totalIncomes },
+        {
+          name: 'Cuotas y multas sin pagar',
+          amount: (data[0].totalIncomes + data[0].totalExpenses) * -1,
+        },
+      ];
+
+      this.totalTeamDataSource = [
+        {
+          name: 'Ingresos totales (temporada anterior + cuotas y multas pagadas)',
+          amount: data[1].totalIncomes,
+        },
+        {
+          name: 'Gastos totales (pago del campo + otros gastos)',
+          amount: data[1].totalExpenses,
+        },
+      ];
+      this.total = data[1].totalIncomes + data[1].totalExpenses;
+      this.isLoading$.next(false);
     });
   }
 

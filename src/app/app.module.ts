@@ -56,6 +56,9 @@ import { TotalBalanceComponent } from './components/total-balance/total-balance.
 import { NgOptimizedImage } from '@angular/common';
 import { BalanceAlertComponent } from './components/dialogs/balance-alert/balance-alert.component';
 import { ChangeAliasComponent } from './components/change-alias/change-alias.component';
+import { TeamBalanceComponent } from './components/team-balance/team-balance.component';
+import { TeamCreateMovementComponent } from './components/dialogs/team-create-movement/team-create-movement.component';
+import { TeamDeleteMovementComponent } from './components/dialogs/team-delete-movement/team-delete-movement.component';
 
 @NgModule({
   declarations: [
@@ -87,6 +90,9 @@ import { ChangeAliasComponent } from './components/change-alias/change-alias.com
     TotalBalanceComponent,
     BalanceAlertComponent,
     ChangeAliasComponent,
+    TeamBalanceComponent,
+    TeamCreateMovementComponent,
+    TeamDeleteMovementComponent,
   ],
   imports: [
     BrowserModule,

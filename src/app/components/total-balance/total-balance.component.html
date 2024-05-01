@@ -2,33 +2,53 @@
   <section *ngIf="isLoading$ | async">
     <mat-spinner></mat-spinner>
   </section>
-  <section *ngIf="!(isLoading$ | async)" class="mat-elevation-z8 balance-table-card">
+  <section
+    *ngIf="!(isLoading$ | async)"
+    class="mat-elevation-z8 balance-table-card"
+  >
     <section class="balance-title-section">
       <h2>Estado de cuentas</h2>
     </section>
     <table mat-table [dataSource]="dataSource">
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Concepto</th>
-        <td mat-cell *matCellDef="let data"> {{data.name}}</td>
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef>Concepto</th>
+        <td mat-cell *matCellDef="let data">{{ data.description }}</td>
       </ng-container>
       <ng-container matColumnDef="amount">
-        <th mat-header-cell *matHeaderCellDef> Cantidad</th>
-        <td mat-cell *matCellDef="let data"> {{data.amount}}€</td>
+        <th mat-header-cell *matHeaderCellDef>Cantidad</th>
+        <td mat-cell *matCellDef="let data" class="amount-cell">
+          {{ data.amount }}€
+        </td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="columns"></tr>
-      <tr mat-row *matRowDef="let row; columns: columns;"></tr>
+      <tr mat-row *matRowDef="let row; columns: columns"></tr>
     </table>
     <table mat-table [dataSource]="totalDataSource" class="total-table">
       <ng-container matColumnDef="name">
-        <td mat-cell *matCellDef="let data"> {{data.name}}</td>
-        <td mat-footer-cell *matFooterCellDef> Total</td>
+        <th mat-header-cell *matHeaderCellDef>Concepto</th>
+        <td mat-cell *matCellDef="let data">{{ data.name }}</td>
       </ng-container>
       <ng-container matColumnDef="amount">
-        <td mat-cell *matCellDef="let data"> {{data.amount}}€</td>
-        <td mat-footer-cell *matFooterCellDef>{{total}}€</td>
+        <th mat-header-cell *matHeaderCellDef>Cantidad</th>
+        <td mat-cell *matCellDef="let data" class="amount-cell">
+          {{ data.amount }}€
+        </td>
       </ng-container>
-      <tr mat-row *matRowDef="let row; columns: columns;"></tr>
-      <tr mat-footer-row *matFooterRowDef="columns"></tr>
+      <tr mat-row *matRowDef="let row; columns: totalColumns"></tr>
+    </table>
+    <table mat-table [dataSource]="totalTeamDataSource" class="total-table">
+      <ng-container matColumnDef="name">
+        <td mat-cell *matCellDef="let data">{{ data.name }}</td>
+        <td mat-footer-cell *matFooterCellDef>Total</td>
+      </ng-container>
+      <ng-container matColumnDef="amount">
+        <td mat-cell *matCellDef="let data">{{ data.amount }}€</td>
+        <td mat-footer-cell *matFooterCellDef class="amount-cell">
+          {{ total }}€
+        </td>
+      </ng-container>
+      <tr mat-row *matRowDef="let row; columns: totalColumns"></tr>
+      <tr mat-footer-row *matFooterRowDef="totalColumns"></tr>
     </table>
   </section>
 </section>

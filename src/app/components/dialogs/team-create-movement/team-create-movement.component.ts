@@ -1,31 +1,27 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component } from '@angular/core';
 import {
-  FormBuilder,
-  FormControl,
   FormGroup,
+  FormControl,
+  FormBuilder,
   Validators,
 } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MovementService } from '../../../services/movement.service';
-import { MovementType } from '../../../entities/MovementType';
-import Member from '../../../entities/Member';
-import { MemberService } from '../../../services/member.service';
-import { BehaviorSubject } from 'rxjs';
-import { HttpErrorResponse } from '@angular/common/http';
+import { MovementType } from 'src/app/entities/MovementType';
+import { CreateMovementComponent } from '../create-movement/create-movement.component';
+import { TeamMovementService } from 'src/app/services/team-movement.service';
 
 @Component({
-  selector: 'app-create-movement',
-  templateUrl: './create-movement.component.html',
-  styleUrls: ['./create-movement.component.css'],
+  selector: 'app-team-create-movement',
+  templateUrl: './team-create-movement.component.html',
+  styleUrls: ['./team-create-movement.component.css'],
 })
-export class CreateMovementComponent implements OnInit {
+export class TeamCreateMovementComponent {
   submitted = false;
-  members$ = new BehaviorSubject<Member[]>([]);
 
   form: FormGroup = new FormGroup({
     type: new FormControl<MovementType>(MovementType.EXPENSE),
-    member: new FormControl<Member | undefined>(undefined),
     amount: new FormControl<number>(0),
     description: new FormControl<string>(''),
   });
@@ -33,21 +29,15 @@ export class CreateMovementComponent implements OnInit {
   constructor(
     private dialogRef: MatDialogRef<CreateMovementComponent>,
     private formBuilder: FormBuilder,
-    private movementService: MovementService,
-    private memberService: MemberService,
+    private teamMovementService: TeamMovementService,
     private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       type: [MovementType.EXPENSE, [Validators.required]],
-      member: [undefined, [Validators.required]],
       amount: [0, [Validators.required]],
       description: ['', [Validators.required]],
-    });
-
-    this.memberService.getAll$().subscribe({
-      next: (members) => this.members$.next(members),
     });
   }
 
@@ -57,7 +47,6 @@ export class CreateMovementComponent implements OnInit {
       return;
     }
     const type: MovementType = this.form.get('type')?.value;
-    const member: Member = this.form.get('member')?.value;
     const amount: number = this.form.get('amount')?.value;
     const description: string = this.form.get('description')?.value;
 
@@ -90,16 +79,14 @@ export class CreateMovementComponent implements OnInit {
       }
     }
 
-    this.movementService
-      .create$(type, member.id, amount, description)
-      .subscribe({
-        next: () => this.dialogRef.close(),
-        error: (err: HttpErrorResponse) => {
-          console.log(err);
-          this.snackBar.open('Error creando el movimiento', 'Ok', {
-            duration: 5000,
-          });
-        },
-      });
+    this.teamMovementService.create$(type, amount, description).subscribe({
+      next: () => this.dialogRef.close(),
+      error: (err: HttpErrorResponse) => {
+        console.log(err);
+        this.snackBar.open('Error creando el movimiento', 'Ok', {
+          duration: 5000,
+        });
+      },
+    });
   }
 }
