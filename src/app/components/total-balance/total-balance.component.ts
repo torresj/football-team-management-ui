@@ -5,6 +5,7 @@ import { MovementType } from '../../entities/MovementType';
 import { TeamMovementService } from 'src/app/services/team-movement.service';
 import { MatTableDataSource } from '@angular/material/table';
 import Movement from 'src/app/entities/Movement';
+import { ReportService } from 'src/app/services/report.service';
 
 export interface TableData {
   name: string;
@@ -18,6 +19,7 @@ export interface TableData {
 })
 export class TotalBalanceComponent implements OnInit {
   isLoading$ = new BehaviorSubject(true);
+  isDownloading$ = new BehaviorSubject(false);
   columns: string[] = ['description', 'amount'];
   totalColumns: string[] = ['name', 'amount'];
   dataSource = new MatTableDataSource<Movement>();
@@ -27,7 +29,8 @@ export class TotalBalanceComponent implements OnInit {
 
   constructor(
     private movementService: MovementService,
-    private teamMovementService: TeamMovementService
+    private teamMovementService: TeamMovementService,
+    private reportService: ReportService
   ) {}
 
   ngOnInit(): void {
@@ -62,6 +65,22 @@ export class TotalBalanceComponent implements OnInit {
       ];
       this.total = data[1].totalIncomes + data[1].totalExpenses;
       this.isLoading$.next(false);
+    });
+  }
+
+  getReportPDF() {
+    this.isDownloading$.next(true);
+    this.reportService.getPDFReport$().subscribe((data) => {
+      var file = new Blob([data], { type: 'application/pdf' });
+      var fileURL = URL.createObjectURL(file);
+      window.open(fileURL);
+      var a = document.createElement('a');
+      a.href = fileURL;
+      a.target = '_blank';
+      a.download = 'balance.pdf';
+      document.body.appendChild(a);
+      a.click();
+      this.isDownloading$.next(false);
     });
   }
 

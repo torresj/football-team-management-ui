@@ -51,4 +51,15 @@
       <tr mat-footer-row *matFooterRowDef="totalColumns"></tr>
     </table>
   </section>
+  <section *ngIf="isDownloading$ | async">
+    <mat-spinner color="accent"></mat-spinner>
+  </section>
+  <button
+    *ngIf="!(isDownloading$ | async)"
+    mat-raised-button
+    color="accent"
+    (click)="getReportPDF()"
+  >
+    Descargar estado de cuentas completo en PDF
+  </button>
 </section>
