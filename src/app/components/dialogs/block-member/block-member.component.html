@@ -1,0 +1,12 @@
+<section class="block-member-section">
+  <h1 mat-dialog-title>Actualizar estado del miembro</h1>
+  <div mat-dialog-content>
+    <mat-checkbox class="example-margin" [(ngModel)]="blocked"
+      >Bloqueado</mat-checkbox
+    >
+  </div>
+  <div class="dialog-action-buttons" mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button mat-button (click)="submit()">Guardar</button>
+  </div>
+</section>

@@ -17,10 +17,17 @@
       </h2>
     </section>
     <section class="members-header">
-      <section class="injured-header">
-        <span>Lesionado </span>
-        <div class="legend"></div>
+      <section class="status-headers">
+        <section class="injured-header">
+          <span>Lesionado </span>
+          <div class="legend"></div>
+        </section>
+        <section class="blocked-header">
+          <span>Bloqueado </span>
+          <div class="legend2"></div>
+        </section>
       </section>
+
       <section class="members-buttons-section" *ngIf="isAdmin | async">
         <button mat-fab color="accent" (click)="createMember()">
           <mat-icon>add</mat-icon>
@@ -77,6 +84,10 @@
               <mat-icon>healing</mat-icon>
               <span>Lesionado</span>
             </button>
+            <button mat-menu-item (click)="blockedMember(member)">
+              <mat-icon>block</mat-icon>
+              <span>{{ member.blocked ? "Desbloquear" : "Bloquear" }}</span>
+            </button>
           </mat-menu>
         </td>
       </ng-container>
@@ -84,7 +95,9 @@
       <tr
         mat-row
         *matRowDef="let member; columns: columns"
-        [class]="member.injured ? 'injured' : ''"
+        class="{{ member.injured ? 'injured' : '' }}{{
+          member.blocked ? 'blocked' : ''
+        }}"
       ></tr>
     </table>
   </section>

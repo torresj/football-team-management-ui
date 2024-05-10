@@ -77,6 +77,15 @@ export class MemberService {
     );
   }
 
+  updateBlockedMember$(memberId: number, blocked: boolean) {
+    return this.http.patch(
+      apiConstants.apiBaseUrl + `/v1/members/${memberId}/blocked`,
+      {
+        blocked: blocked,
+      }
+    );
+  }
+
   delete$(memberId: number) {
     return this.http.delete(
       apiConstants.apiBaseUrl + `/v1/members/${memberId}`

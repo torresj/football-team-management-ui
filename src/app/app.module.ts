@@ -59,6 +59,7 @@ import { ChangeAliasComponent } from './components/change-alias/change-alias.com
 import { TeamBalanceComponent } from './components/team-balance/team-balance.component';
 import { TeamCreateMovementComponent } from './components/dialogs/team-create-movement/team-create-movement.component';
 import { TeamDeleteMovementComponent } from './components/dialogs/team-delete-movement/team-delete-movement.component';
+import { BlockMemberComponent } from './components/dialogs/block-member/block-member.component';
 
 @NgModule({
   declarations: [
@@ -93,6 +94,7 @@ import { TeamDeleteMovementComponent } from './components/dialogs/team-delete-mo
     TeamBalanceComponent,
     TeamCreateMovementComponent,
     TeamDeleteMovementComponent,
+    BlockMemberComponent,
   ],
   imports: [
     BrowserModule,

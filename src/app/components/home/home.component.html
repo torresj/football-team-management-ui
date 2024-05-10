@@ -2,51 +2,126 @@
   <section *ngIf="(isLoading$ | async) || (member$ | async) == undefined">
     <mat-spinner></mat-spinner>
   </section>
-  <section *ngIf="!(isLoading$ | async) && ((member$ | async) != null && (member$ | async)!= undefined)">
-    <article *ngIf="(member$ | async) as member" class="info-section">
-      <h1>Bienvenido {{member.name}}</h1>
-      <article *ngIf="(nextMatch$ | async)">
-        <p class="info-content">El siguiente partido para el
-          dia {{(nextMatch$ | async)?.matchDay | date:'dd/MM/yy'}} ya está abierto.
-          <span
-            *ngIf="!(isMemberConfirmed$ | async)"> Aun no has confirmado tu asitencia: </span>
-          <span
-            *ngIf="(isMemberConfirmed$ | async)"> Ya has confirmado que <strong>{{(isMemberAssistNextMatch$ | async) ? 'asistirás' : 'no asistirás'}}
-            al partido</strong> pero puedes cambiarlo hasta el dia de antes. </span>
-        </p>
-        <p *ngIf="(Date() | date:'dd/MM/yy') == ((nextMatch$ | async)?.matchDay | date:'dd/MM/yy')" class="today-match">
-          El partido es hoy por lo que ya no se permiten cambios
-        </p>
-        <article *ngIf="isMemberInTeamA$ | async" class="team-article">
-          <p>Los equipos ya están hechos. Tu color es el blanco</p>
-          <img src="assets/white-tshirt.svg" height="200" width="200" alt="">
+  <section
+    *ngIf="
+      !(isLoading$ | async) &&
+      (member$ | async) != null &&
+      (member$ | async) != undefined
+    "
+  >
+    <section *ngIf="member$ | async as member">
+      <section *ngIf="member.blocked">
+        <h1 class="user-blocked">
+          {{ member.name }} tu usuario ha sido bloqueado y no puedes apuntarte a
+          los partidos. Ponte en contacto con el presidente.
+        </h1>
+      </section>
+      <section *ngIf="!member.blocked">
+        <article class="info-section">
+          <h1>Bienvenido {{ member.name }}</h1>
+          <article *ngIf="nextMatch$ | async">
+            <p class="info-content">
+              El siguiente partido para el dia
+              {{ (nextMatch$ | async)?.matchDay | date : "dd/MM/yy" }} ya está
+              abierto.
+              <span *ngIf="!(isMemberConfirmed$ | async)">
+                Aun no has confirmado tu asitencia:
+              </span>
+              <span *ngIf="isMemberConfirmed$ | async">
+                Ya has confirmado que
+                <strong
+                  >{{
+                    (isMemberAssistNextMatch$ | async)
+                      ? "asistirás"
+                      : "no asistirás"
+                  }}
+                  al partido</strong
+                >
+                pero puedes cambiarlo hasta el dia de antes.
+              </span>
+            </p>
+            <p
+              *ngIf="
+                (Date() | date : 'dd/MM/yy') ==
+                ((nextMatch$ | async)?.matchDay | date : 'dd/MM/yy')
+              "
+              class="today-match"
+            >
+              El partido es hoy por lo que ya no se permiten cambios
+            </p>
+            <article *ngIf="isMemberInTeamA$ | async" class="team-article">
+              <p>Los equipos ya están hechos. Tu color es el blanco</p>
+              <img
+                src="assets/white-tshirt.svg"
+                height="200"
+                width="200"
+                alt=""
+              />
+            </article>
+            <article *ngIf="isMemberInTeamB$ | async" class="team-article">
+              <p>Los equipos ya están hechos. Tu color es el rojo</p>
+              <img
+                src="assets/red-tshirt.svg"
+                height="200"
+                width="200"
+                alt=""
+              />
+            </article>
+            <article
+              *ngIf="
+                (Date() | date : 'dd/MM/yy') !=
+                ((nextMatch$ | async)?.matchDay | date : 'dd/MM/yy')
+              "
+              class="confirm-button-section"
+            >
+              <button
+                class="info-buttons"
+                mat-raised-button
+                color="primary"
+                (click)="openDialog(true)"
+              >
+                Alta
+              </button>
+              <button
+                class="info-buttons"
+                mat-raised-button
+                color="warn"
+                (click)="openDialog(false)"
+              >
+                Baja
+              </button>
+            </article>
+          </article>
+          <article *ngIf="(nextMatch$ | async) === null">
+            El siguiente partido aun no ha sido creado
+          </article>
         </article>
-        <article *ngIf="isMemberInTeamB$ | async" class="team-article">
-          <p>Los equipos ya están hechos. Tu color es el rojo</p>
-          <img src="assets/red-tshirt.svg" height="200" width="200" alt="">
+        <article class="next-match-button-section">
+          <button
+            mat-stroked-button
+            color="accent"
+            [disabled]="
+              (nextMatch$ | async) === null ||
+              (nextMatch$ | async) === undefined
+            "
+            [routerLink]="'/matches/next-match'"
+          >
+            Ir al partido
+          </button>
         </article>
-        <article *ngIf="(Date() | date:'dd/MM/yy') != ((nextMatch$ | async)?.matchDay | date:'dd/MM/yy')"
-                 class="confirm-button-section">
-          <button class="info-buttons" mat-raised-button color="primary" (click)="openDialog(true)">Alta</button>
-          <button class="info-buttons" mat-raised-button color="warn" (click)="openDialog(false)">Baja</button>
+        <article class="next-match-button-section">
+          <button
+            *ngIf="
+              (member$ | async)?.role == Role.ADMIN && !(nextMatch$ | async)
+            "
+            mat-stroked-button
+            color="primary"
+            (click)="createMatch()"
+          >
+            Crear partido
+          </button>
         </article>
-      </article>
-      <article *ngIf="(nextMatch$ | async) === null">
-        El siguiente partido aun no ha sido creado
-      </article>
-    </article>
-    <article class="next-match-button-section">
-      <button mat-stroked-button color="accent"
-              [disabled]="(nextMatch$ | async) === null || (nextMatch$ | async) === undefined"
-              [routerLink]="'/matches/next-match'">Ir al partido
-      </button>
-    </article>
-    <article class="next-match-button-section">
-      <button
-        *ngIf="(member$ | async)?.role == Role.ADMIN && !(nextMatch$ | async)"
-        mat-stroked-button color="primary"
-        (click)="createMatch()">Crear partido
-      </button>
-    </article>
+      </section>
+    </section>
   </section>
 </section>

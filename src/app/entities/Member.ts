@@ -10,4 +10,5 @@ export default interface Member {
   role: Role;
   balance: number;
   injured: boolean;
+  blocked: boolean;
 }
