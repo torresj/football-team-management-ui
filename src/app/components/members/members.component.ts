@@ -131,7 +131,7 @@ export class MembersComponent implements OnInit {
     dialogConfig.data = member;
 
     this.dialog
-      .open(BlockMemberComponent, dialogConfig)
+      .open(EditMemberComponent, dialogConfig)
       .afterClosed()
       .subscribe({
         next: () => this.getMembers(),
