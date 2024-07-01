@@ -32,3 +32,8 @@ td.mat-mdc-footer-cell {
 .amount-cell {
   text-align: right !important;
 }
+
+.download-button {
+  margin-left: 20px;
+  margin-right: 20px;
+}
