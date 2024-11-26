@@ -18,9 +18,6 @@ jobs:
     steps:
       # Checkout the code as the first step.
       - checkout
-      # Setup docker
-      - setup_remote_docker:
-          version: 20.10.14
       # Create revision variable
       - run:
           name: Generate revision
