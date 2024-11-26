@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: registry.torresj.com/football-management-team-ui
+  repository: registry.torresj.es/football-management-team-ui
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
