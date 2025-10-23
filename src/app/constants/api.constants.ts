@@ -1,3 +1,3 @@
 export const apiConstants = {
-  apiBaseUrl: 'https://api.pkmh.es'
+  apiBaseUrl: 'https://api.pkmh.torresj.es'
 };
